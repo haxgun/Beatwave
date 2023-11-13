@@ -4,7 +4,7 @@ const spotifyAppLogo = `
 <span style="display: inline-flex; position: relative; top: 6px;">
     <img src="spotify_app_logo.png" width="28px" alt="Spotify App Logo">
 </span>
-`
+`;
 
 document.querySelector("#app").innerHTML = `
   <div>
