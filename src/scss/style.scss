@@ -1,0 +1,124 @@
+@import "variables";
+
+:root {
+  background: $background-color;
+  color: $white;
+  font-size: 14px;
+  font-family: $font-family_1;
+  font-synthesis: none;
+  text-rendering: optimizeSpeed;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+span {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.main {
+  .main__body {
+    .main__container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.8rem;
+
+      .title {
+        font-size: 6rem;
+        font-weight: 600;
+        letter-spacing: -.025em;
+        line-height: 1;
+        background-color: $white;
+        background-image: linear-gradient(to bottom, #fff, #ccc);
+        background-size: 100%;
+        background-repeat: repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .description {
+        font-size: 3rem;
+        line-height: 1;
+        font-weight: 700;
+        background-color: $white;
+        background-image: linear-gradient(to bottom, #fff, #ccc);
+        background-size: 100%;
+        background-repeat: repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .subdescription {
+        color: hsla(0,0%,100%,.8);
+        font-size: 1.5rem;
+        line-height: 2rem;
+        max-width: 48rem;
+      }
+
+      .btn {
+        $btn-text-color: $white;
+        align-items: center;
+        background: $spotify-btn-color;
+        border: none;
+        border-radius: .75rem;
+        color: $btn-text-color;
+        display: flex;
+        gap: .75rem;
+        height: 3.5rem;
+        padding: 0 1.5rem;
+        font-weight: 600;
+        font-size: 1.125rem;
+        transition: all .2s;
+
+        &:hover {
+          background: $spotify-btn-color-hover;
+          cursor: pointer;
+        }
+
+        &:active {
+          background: $spotify-btn-color-active;
+        }
+
+        .spotify-logo {
+          line-height: 0;
+          svg {
+            $spotify-logo-size: 1.5rem;
+            width: $spotify-logo-size;
+            height: $spotify-logo-size;
+            fill: $btn-text-color;
+          }
+        }
+      }
+
+      .footer {
+        opacity: .5;
+        font-size: 0.875rem;
+        font-weight: 300;
+      }
+    }
+  }
+}
