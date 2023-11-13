@@ -1,18 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition
     }
 
     return new Promise((resolve) => {
       let scrollDuration = 500,
-          cosParameter = window.scrollY / 2,
-          oldTimestamp = performance.now(),
-          scrollCount = 0
+        cosParameter = window.scrollY / 2,
+        oldTimestamp = performance.now(),
+        scrollCount = 0
 
-      function step (newTimestamp) {
+      function step(newTimestamp) {
         scrollCount += Math.PI / (scrollDuration / (newTimestamp - oldTimestamp))
 
         if (scrollCount >= Math.PI) {
@@ -32,7 +32,7 @@ const router = createRouter({
         window.requestAnimationFrame(step)
       }
 
-      window.requestAnimationFrame(step);
+      window.requestAnimationFrame(step)
     })
   },
   history: createWebHistory(import.meta.env.BASE_URL),

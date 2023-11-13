@@ -1,11 +1,33 @@
-<script setup>
-
-</script>
-
 <template>
-
+  <Widget
+    v-if="accessToken"
+    :showArtist="showArtist"
+    :showAlbumArt="showAlbumArt"
+    :showSpotifyLogo="showSpotifyLogo"
+    :accessToken="accessToken"
+  />
 </template>
 
-<style scoped>
+<script>
+import Widget from '@/components/Overlay.vue'
 
-</style>
+export default {
+  components: { Widget },
+
+  data: () => ({
+    showArtist: true,
+    showAlbumArt: true,
+    showSpotifyLogo: true,
+    accessToken: null
+  }),
+
+  mounted() {
+    const { showArtist, showAlbumArt, showSpotifyLogo, accessToken } = this.$route.query
+
+    this.showArtist = Boolean(showArtist)
+    this.showAlbumArt = Boolean(showAlbumArt)
+    this.showSpotifyLogo = Boolean(showSpotifyLogo)
+    this.accessToken = accessToken
+  }
+}
+</script>

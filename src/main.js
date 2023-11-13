@@ -1,9 +1,8 @@
-import {createApp} from 'vue'
-import axios from 'axios'
+import { createApp } from 'vue'
 
 import App from '@/App.vue'
 
-import '@/scss/style.scss';
+import '@/assets/style.scss'
 import router from '@/router'
 
 const app = createApp(App)

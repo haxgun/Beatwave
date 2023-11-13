@@ -7,12 +7,11 @@
 <script>
 export default {
   computed: {
-    widgetMode () {
-      return this.$route.name === 'nowPlaying'
+    widgetMode() {
+      return this.$route.name === 'overlay'
     }
   }
 }
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

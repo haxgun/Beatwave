@@ -1,7 +1,5 @@
 <template>
-  <Landing
-    :loginUrl="loginWithSpotifyUri"
-  />
+  <Landing :loginUrl="loginWithSpotifyUri" />
 </template>
 
 <script>
@@ -12,7 +10,7 @@ export default {
   components: { Landing },
 
   computed: {
-    loginWithSpotifyUri () {
+    loginWithSpotifyUri() {
       const settingsPage = this.$router.resolve({ name: 'settings' })
       const redirectUri = `${location.origin}${settingsPage.href}`
 
@@ -23,7 +21,9 @@ export default {
         scope: 'user-read-currently-playing'
       }
 
-      return buildUrl('https://accounts.spotify.com/authorize', { queryParams })
+      return buildUrl('https://accounts.spotify.com/authorize', {
+        queryParams
+      })
     }
   }
 }
