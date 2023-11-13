@@ -13,6 +13,12 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
-    "normalize.css": "^8.0.1"
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.53.0",
+    "eslint-config-prettier": "^9.0.0",
+    "normalize.css": "^8.0.1",
+    "postcss-uncss": "^0.17.0",
+    "prettier": "^3.1.0",
+    "uncss": "^0.17.3"
   }
 }
