@@ -93,6 +93,7 @@ span {
         font-weight: 600;
         font-size: 1.125rem;
         transition: all 0.2s;
+        text-decoration: none;
 
         &:hover {
           background: $spotify-btn-color-hover;
