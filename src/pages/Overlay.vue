@@ -1,32 +1,38 @@
 <template>
-  <Widget
+  <Overlay
     v-if="accessToken"
-    :showArtist="showArtist"
     :showAlbumArt="showAlbumArt"
+    :showArtist="showArtist"
+    :showBackground="showBackground"
+    :colorBG="colorBG"
     :showSpotifyLogo="showSpotifyLogo"
     :accessToken="accessToken"
   />
 </template>
 
 <script>
-import Widget from '@/components/Overlay.vue'
+import Overlay from '@/components/Overlay.vue'
 
 export default {
-  components: { Widget },
+  components: { Overlay },
 
   data: () => ({
-    showArtist: true,
     showAlbumArt: true,
+    showArtist: true,
+    showBackground: true,
     showSpotifyLogo: true,
+    colorBG: '000000',
     accessToken: null
   }),
 
   mounted() {
-    const { showArtist, showAlbumArt, showSpotifyLogo, accessToken } = this.$route.query
-
-    this.showArtist = Boolean(showArtist)
+    const { showAlbumArt, showArtist, showBackground, showSpotifyLogo, colorBG, accessToken } =
+      this.$route.query
     this.showAlbumArt = Boolean(showAlbumArt)
+    this.showArtist = Boolean(showArtist)
+    this.showBackground = Boolean(showBackground)
     this.showSpotifyLogo = Boolean(showSpotifyLogo)
+    this.colorBG = colorBG
     this.accessToken = accessToken
   }
 }
