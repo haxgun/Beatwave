@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="albumArt || artistName || fakeArtist"
-    :style="{ backgroundColor: showBackground ? 'rgb(0 0 0 / 60%)' : 'transparent' }"
+    :style="{ backgroundColor: showBackground ? `#${colorBG}99` : 'transparent' }"
     class="media"
   >
     <div v-if="showAlbumArt" class="media__image">
@@ -10,6 +10,9 @@
     <div class="media__info">
       <div class="track__name" v-text="trackName || fakeTitle"></div>
       <div v-if="showArtist" class="track__artist" v-text="artistName || fakeArtist"></div>
+    </div>
+    <div v-if="showSpotifyLogo" class="spotify-logo">
+      <img src="@/assets/spotify-logo-without-text.svg" alt="Spotify">
     </div>
   </div>
 </template>
@@ -36,6 +39,16 @@ export default {
     },
 
     showBackground: {
+      type: Boolean,
+      default: true
+    },
+
+    colorBG: {
+      type: String,
+      default: '000000'
+    },
+
+    showSpotifyLogo: {
       type: Boolean,
       default: true
     },
