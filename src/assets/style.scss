@@ -195,6 +195,15 @@ span {
     align-items: center;
     gap: 15px;
   }
+
+  .settings__input {
+    display: flex;
+    gap: 6px;
+
+    input {
+      width: -webkit-fill-available;
+    }
+  }
 }
 
 .preview {

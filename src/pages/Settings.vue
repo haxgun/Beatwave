@@ -42,7 +42,10 @@
               <img src="@/assets/preview_bg.webp" alt="" />
             </div>
           </div>
-          <InputText rows="5" cols="82" class="textarea" readonly v-model="browserSourceUrl" />
+          <div class="settings__input">
+            <InputText id="linkOBS" rows="5" cols="82" class="textarea" readonly v-model="browserSourceUrl" />
+            <Button @click="copyText()" icon="pi pi-copy" aria-label="Filter" />
+          </div>
         </div>
       </div>
     </div>
@@ -60,6 +63,11 @@ export default {
     accessToken() {
       const parsed = queryString.parse(this.$route.hash)
       return parsed['access_token']
+    },
+
+    copyText() {
+      const inputDoc = this.browserSourceUrl
+      navigator.clipboard.writeText(inputDoc);
     },
 
     browserSourceUrl() {
