@@ -46,15 +46,20 @@
               </div>
             </div>
             <div class="settings__input">
-              <InputText
-                id="linkOBS"
-                rows="5"
-                cols="82"
-                class="textarea"
-                readonly
-                v-model="browserSourceUrl"
-              />
-              <Button @click="copyText()" icon="pi pi-copy" aria-label="Filter" />
+              <div @click="copy(browserSourceUrl)" class="settings__input__block">
+                <span class="copy">Click To Copy Widget URL</span>
+                <span class="input">
+                  <InputText
+                    id="linkOBS"
+                    rows="5"
+                    cols="82"
+                    class="textarea"
+                    readonly
+                    v-model="browserSourceUrl"
+                  />
+                </span>
+              </div>
+              <Button @click="copy(browserSourceUrl)" icon="pi pi-copy" aria-label="Filter" />
             </div>
           </div>
         </div>
@@ -66,19 +71,18 @@
 <script>
 import queryString from 'query-string'
 import Overlay from '@/components/Overlay.vue'
+import copy from 'copy-to-clipboard';
 
 export default {
   components: { Overlay },
 
   computed: {
+    copy() {
+      return copy
+    },
     accessToken() {
       const parsed = queryString.parse(this.$route.hash)
       return parsed['access_token']
-    },
-
-    copyText() {
-      const inputDoc = this.browserSourceUrl
-      navigator.clipboard.writeText(inputDoc)
     },
 
     browserSourceUrl() {

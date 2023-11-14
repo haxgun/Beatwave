@@ -10,7 +10,9 @@
       <PreloadedImage id="cover" :src="albumArt || fakeAlbumArt" alt="Album Art" />
     </div>
     <div class="media__info">
-      <div class="track__name" v-text="trackName || fakeTitle"></div>
+      <div class="track__name">
+        {{ trackName || fakeTitle }}
+      </div>
       <div v-show="showArtist" class="track__artist" v-text="artistName || fakeArtist"></div>
     </div>
     <div v-show="showSpotifyLogo" class="spotify-logo">
@@ -77,6 +79,10 @@ export default {
   }),
 
   computed: {
+    shouldDisplayFirstTrackName() {
+      return (this.trackName || this.fakeTitle).length > 27;
+    },
+
     fakeAlbumArt() {
       return fakeAlbumArt
     },

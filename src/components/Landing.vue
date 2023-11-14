@@ -2,6 +2,11 @@
   <div class="main">
     <div class="main__body">
       <div class="main__container">
+        <div class="logo">
+          <img src="@/assets/logo.svg" alt="Logotype" width="140px">
+          <span class="logo__gradient"></span>
+        </div>
+
         <h1 class="title">Milady</h1>
         <p class="description">The ultimate accessory for your Stream.</p>
         <p class="subdescription">

@@ -1,7 +1,7 @@
 <template>
-  <transition name="fade">
+  <Transition name="fade">
     <img v-show="mountedSrc" :src="mountedSrc" />
-  </transition>
+  </Transition>
 </template>
 
 <script>
