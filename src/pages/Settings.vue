@@ -21,14 +21,24 @@
               <label for="showBackground">Change Background color</label>
               <ColorPicker v-model="settings.colorBG" />
             </span>
+            <!--            <span>-->
+            <!--              <label for="showSpotifyLogo">Show Spotify logo</label>-->
+            <!--              <InputSwitch v-model="settings.showSpotifyLogo" aria-labelledby="showSpotifyLogo" />-->
+            <!--            </span>-->
             <span>
-              <label for="showSpotifyLogo">Show Spotify logo</label>
-              <InputSwitch v-model="settings.showSpotifyLogo" aria-labelledby="showSpotifyLogo" />
+              <label for="showMaxWidth">Show max width</label>
+              <InputSwitch v-model="settings.showMaxWidth" aria-labelledby="showMaxWidth" />
             </span>
           </div>
           <div class="settings__preview">
             <div class="preview">
-              <div class="preview__content">
+              <div
+                :style="{
+                  width: settings.showMaxWidth ? '100%' : '',
+                  alignItems: settings.showMaxWidth ? 'center' : ''
+                }"
+                class="preview__content"
+              >
                 <Overlay
                   class="widget"
                   :showAlbumArt="settings.showAlbumArt"
@@ -36,6 +46,7 @@
                   :showBackground="settings.showBackground"
                   :colorBG="settings.colorBG"
                   :showSpotifyLogo="settings.showSpotifyLogo"
+                  :showMaxWidth="settings.showMaxWidth"
                   :fakeTitle="'Blinding Lights'"
                   :fakeArtist="'The Weeknd'"
                   :accessToken="accessToken"
@@ -69,9 +80,9 @@
 </template>
 
 <script>
-import queryString from 'query-string'
 import Overlay from '@/components/Overlay.vue'
-import copy from 'copy-to-clipboard';
+import copy from 'copy-to-clipboard'
+import queryString from 'query-string'
 
 export default {
   components: { Overlay },
@@ -104,6 +115,7 @@ export default {
       showArtist: true,
       showBackground: true,
       showSpotifyLogo: true,
+      showMaxWidth: true,
       colorBG: '000000'
     }
   })

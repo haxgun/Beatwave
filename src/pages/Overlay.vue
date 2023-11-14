@@ -6,6 +6,7 @@
     :showBackground="showBackground"
     :colorBG="colorBG"
     :showSpotifyLogo="showSpotifyLogo"
+    :showMaxWidth="showMaxWidth"
     :accessToken="accessToken"
   />
 </template>
@@ -21,17 +22,26 @@ export default {
     showArtist: true,
     showBackground: true,
     showSpotifyLogo: true,
+    showMaxWidth: true,
     colorBG: '000000',
     accessToken: null
   }),
 
   mounted() {
-    const { showAlbumArt, showArtist, showBackground, showSpotifyLogo, colorBG, accessToken } =
-      this.$route.query
+    const {
+      showAlbumArt,
+      showArtist,
+      showBackground,
+      showSpotifyLogo,
+      showMaxWidth,
+      colorBG,
+      accessToken
+    } = this.$route.query
     this.showAlbumArt = Boolean(showAlbumArt)
     this.showArtist = Boolean(showArtist)
     this.showBackground = Boolean(showBackground)
     this.showSpotifyLogo = Boolean(showSpotifyLogo)
+    this.showMaxWidth = Boolean(showMaxWidth)
     this.colorBG = colorBG
     this.accessToken = accessToken
   }

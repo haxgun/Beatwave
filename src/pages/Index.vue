@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import buildUrl from 'build-url'
 import Landing from '@/components/Landing.vue'
+import buildUrl from 'build-url'
 
 export default {
   components: { Landing },

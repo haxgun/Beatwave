@@ -2,7 +2,9 @@
   <div
     v-if="albumArt || artistName || fakeArtist"
     :style="{
-      backgroundColor: showBackground ? `#${colorBG}99` : 'transparent'
+      backgroundColor: showBackground ? `#${colorBG}99` : 'transparent',
+      width: showMaxWidth ? 'max-content' : '',
+      maxWidth: showMaxWidth ? '420px' : ''
     }"
     class="media"
   >
@@ -22,10 +24,9 @@
 </template>
 
 <script>
-import axios from 'axios'
-
-import PreloadedImage from '@/components/PreloadedImage.vue'
 import fakeAlbumArt from '@/assets/fakeAlbumArt.webp'
+import PreloadedImage from '@/components/PreloadedImage.vue'
+import axios from 'axios'
 
 const endpointUri = 'https://api.spotify.com/v1/me/player/currently-playing'
 
@@ -58,6 +59,11 @@ export default {
       default: true
     },
 
+    showMaxWidth: {
+      type: Boolean,
+      default: true
+    },
+
     accessToken: {
       type: String,
       default: null
@@ -80,7 +86,7 @@ export default {
 
   computed: {
     shouldDisplayFirstTrackName() {
-      return (this.trackName || this.fakeTitle).length > 27;
+      return (this.trackName || this.fakeTitle).length > 27
     },
 
     fakeAlbumArt() {

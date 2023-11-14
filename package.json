@@ -11,6 +11,7 @@
     "format": "prettier --write src/"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "sass": "^1.69.5",
     "vite": "^4.4.5",
     "vue": "^3.3.8",

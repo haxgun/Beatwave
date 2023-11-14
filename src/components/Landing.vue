@@ -3,7 +3,7 @@
     <div class="main__body">
       <div class="main__container">
         <div class="logo">
-          <img src="@/assets/logo.svg" alt="Logotype" width="140px">
+          <img src="@/assets/logo.svg" alt="Logotype" width="140px" />
           <span class="logo__gradient"></span>
         </div>
 
