@@ -31,3 +31,9 @@ export default {
   }
 }
 </script>
+
+<style>
+:root {
+  background: none !important;
+}
+</style>
