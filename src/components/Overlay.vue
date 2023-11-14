@@ -2,8 +2,7 @@
   <div
     v-if="albumArt || artistName || fakeArtist"
     :style="{
-      backgroundColor: showBackground ? `#${colorBG}99` : 'transparent',
-      backdropFilter: showBackground ? 'blur(2px)' : 'none'
+      backgroundColor: showBackground ? `#${colorBG}99` : 'transparent'
     }"
     class="media"
   >
