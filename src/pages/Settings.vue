@@ -38,7 +38,6 @@
                   :showSpotifyLogo="settings.showSpotifyLogo"
                   :fakeTitle="'Blinding Lights'"
                   :fakeArtist="'The Weeknd'"
-                  :fakeAlbumArt="'/src/assets/fakeAlbumArt.webp'"
                   :accessToken="accessToken"
                 />
               </div>

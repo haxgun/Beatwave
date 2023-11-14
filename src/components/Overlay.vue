@@ -24,6 +24,7 @@
 import axios from 'axios'
 
 import PreloadedImage from '@/components/PreloadedImage.vue'
+import fakeAlbumArt from '@/assets/fakeAlbumArt.webp'
 
 const endpointUri = 'https://api.spotify.com/v1/me/player/currently-playing'
 
@@ -69,11 +70,6 @@ export default {
     fakeArtist: {
       type: String,
       default: null
-    },
-
-    fakeAlbumArt: {
-      type: String,
-      default: null
     }
   },
 
@@ -84,6 +80,10 @@ export default {
   computed: {
     spotifyInfo() {
       return this.userPlayer != null
+    },
+
+    fakeAlbumArt() {
+      return fakeAlbumArt
     },
 
     trackName() {
