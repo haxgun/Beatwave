@@ -32,9 +32,9 @@
                 :showBackground="settings.showBackground"
                 :colorBG="settings.colorBG"
                 :showSpotifyLogo="settings.showSpotifyLogo"
-                :fakeTitle="settings.fakeTitle"
-                :fakeArtist="settings.fakeArtist"
-                :fakeAlbumArt="settings.fakeAlbumArt"
+                :fakeTitle="'Blinding Lights'"
+                :fakeArtist="'The Weeknd'"
+                :fakeAlbumArt="'/src/assets/fakeAlbumArt.webp'"
                 :accessToken="accessToken"
               />
             </div>
@@ -82,9 +82,6 @@ export default {
       showBackground: true,
       showSpotifyLogo: true,
       colorBG: '000000',
-      fakeTitle: 'Blinding Lights',
-      fakeArtist: 'The Weeknd',
-      fakeAlbumArt: '/src/assets/fakeAlbumArt.webp'
     }
   })
 }

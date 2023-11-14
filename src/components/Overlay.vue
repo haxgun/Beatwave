@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="albumArt || artistName || fakeArtist"
-    :style="{ backgroundColor: showBackground ? `#${colorBG}99` : 'transparent' }"
+    :style="{ backgroundColor: showBackground ? `#${colorBG}99` : 'transparent', backdropFilter: showBackground ? 'blur(2px)' : 'none' }"
     class="media"
   >
     <div v-if="showAlbumArt" class="media__image">
