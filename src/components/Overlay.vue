@@ -1,23 +1,11 @@
 <template>
-  <div class="media">
-    <div class="media-left" v-show="showAlbumArt">
-      <figure class="image" :class="{ 'is-64x64': showArtist, 'is-48x48': !showArtist }">
-        <PreloadedImage v-if="albumArt" :src="albumArt" alt="Album Art" />
-      </figure>
+  <div v-if="albumArt || artistName" :style="{ backgroundColor: showBackground ? 'rgb(0 0 0 / 60%)' : 'transparent' }" class="media">
+    <div v-if="showAlbumArt && albumArt " class="media__image">
+      <PreloadedImage id="cover" :src="albumArt" alt="Album Art" />
     </div>
-
-    <div class="media-content">
-      <p class="is-size-4 has-text-white">{{ trackName }}</p>
-
-      <p class="is-size-6 has-text-white" v-show="showArtist">
-        {{ artistName }}
-      </p>
-    </div>
-
-    <div class="media-right" v-show="showSpotifyLogo">
-      <figure class="image is-32x32">
-        <img src="@/assets/spotify-logo-without-text.svg" alt="Spotify" />
-      </figure>
+    <div class="media__info">
+      <div class="track__name">{{ trackName }}</div>
+      <div v-if="showArtist" class="track__artist">{{ artistName }}</div>
     </div>
   </div>
 </template>
@@ -43,7 +31,7 @@ export default {
       default: true
     },
 
-    showSpotifyLogo: {
+    showBackground: {
       type: Boolean,
       default: true
     },
@@ -59,6 +47,10 @@ export default {
   }),
 
   computed: {
+    spotifyInfo() {
+      return this.userPlayer != null
+    },
+
     trackName() {
       return this.userPlayer ? this.userPlayer.item.name : null
     },

@@ -1,5 +1,5 @@
 <template>
-  <Landing :loginUrl="loginWithSpotifyUri" />
+  <Landing :loginUri="loginWithSpotifyUri" />
 </template>
 
 <script>

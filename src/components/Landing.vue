@@ -2,7 +2,6 @@
   <div class="main">
     <div class="main__body">
       <div class="main__container">
-        <!--          <img src="spotify.svg"  alt="Spotify Logo" width="250px">-->
         <h1 class="title">Milady</h1>
         <p class="description">The ultimate accessory for your Stream.</p>
         <p class="subdescription">
@@ -10,12 +9,12 @@
           cover of the track playing on
           <span style="white-space: nowrap"
             ><span style="display: inline-flex; position: relative; top: 6px">
-              <img src="@/assets/spotify_app_logo.png" width="28px" alt="Spotify App Logo" />
+              <img src="@/assets/spotify_app_logo.webp" width="28px" alt="Spotify App Logo" />
             </span>
             Spotify</span
           >
         </p>
-        <a :href="loginUrl" v-show="showLoginButton" class="btn">
+        <a :href="loginUri" v-show="showLoginButton" class="btn">
           <span class="spotify-logo">
             <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -43,7 +42,7 @@ export default {
       default: true
     },
 
-    loginUrl: {
+    loginUri: {
       type: String,
       default: null
     }

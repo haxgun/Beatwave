@@ -2,18 +2,24 @@
   <div class="main">
     <div class="main__body">
       <div class="main__container">
-        <b-switch v-model="settings.showSpotifyLogo" />
-        <b-switch v-model="settings.showAlbumArt" />
-        <b-switch v-model="settings.showArtist" />
-
-        <Overlay
-          class="widget"
-          :showAlbumArt="settings.showAlbumArt"
-          :showArtist="settings.showArtist"
-          :showSpotifyLogo="settings.showSpotifyLogo"
-          :accessToken="accessToken"
-        />
-        <textarea class="textarea" readonly>{{ browserSourceUrl }}</textarea>
+        <InputSwitch v-model="settings.showAlbumArt" />
+        <InputSwitch v-model="settings.showArtist" />
+        <InputSwitch v-model="settings.showBackground" />
+        <div class="preview">
+          <div class="preview__content">
+            <Overlay
+              class="widget"
+              :showAlbumArt="settings.showAlbumArt"
+              :showArtist="settings.showArtist"
+              :accessToken="accessToken"
+              :showBackground="settings.showBackground"
+            />
+          </div>
+          <div class="preview__background">
+            <img src="@/assets/preview_bg.webp" alt="">
+          </div>
+        </div>
+        <InputText rows="5" cols="82" class="textarea" readonly v-model="browserSourceUrl"/>
       </div>
     </div>
   </div>
@@ -47,9 +53,9 @@ export default {
 
   data: () => ({
     settings: {
-      showSpotifyLogo: true,
       showAlbumArt: true,
-      showArtist: true
+      showArtist: true,
+      showBackground: true
     }
   })
 }
