@@ -47,7 +47,14 @@
               </div>
             </div>
             <div class="settings__input">
-              <InputText id="linkOBS" rows="5" cols="82" class="textarea" readonly v-model="browserSourceUrl" />
+              <InputText
+                id="linkOBS"
+                rows="5"
+                cols="82"
+                class="textarea"
+                readonly
+                v-model="browserSourceUrl"
+              />
               <Button @click="copyText()" icon="pi pi-copy" aria-label="Filter" />
             </div>
           </div>
@@ -72,7 +79,7 @@ export default {
 
     copyText() {
       const inputDoc = this.browserSourceUrl
-      navigator.clipboard.writeText(inputDoc);
+      navigator.clipboard.writeText(inputDoc)
     },
 
     browserSourceUrl() {
@@ -94,7 +101,7 @@ export default {
       showArtist: true,
       showBackground: true,
       showSpotifyLogo: true,
-      colorBG: '000000',
+      colorBG: '000000'
     }
   })
 }

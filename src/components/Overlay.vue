@@ -1,7 +1,10 @@
 <template>
   <div
     v-if="albumArt || artistName || fakeArtist"
-    :style="{ backgroundColor: showBackground ? `#${colorBG}99` : 'transparent', backdropFilter: showBackground ? 'blur(2px)' : 'none' }"
+    :style="{
+      backgroundColor: showBackground ? `#${colorBG}99` : 'transparent',
+      backdropFilter: showBackground ? 'blur(2px)' : 'none'
+    }"
     class="media"
   >
     <div v-if="showAlbumArt" class="media__image">
@@ -12,7 +15,7 @@
       <div v-if="showArtist" class="track__artist" v-text="artistName || fakeArtist"></div>
     </div>
     <div v-if="showSpotifyLogo" class="spotify-logo">
-      <img src="@/assets/spotify-logo-without-text.svg" alt="Spotify">
+      <img src="@/assets/spotify-logo-without-text.svg" alt="Spotify" />
     </div>
   </div>
 </template>

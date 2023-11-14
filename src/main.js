@@ -5,8 +5,8 @@ import App from '@/App.vue'
 import PrimeVue from 'primevue/config'
 import InputSwitch from 'primevue/inputswitch'
 import InputText from 'primevue/inputtext'
-import ColorPicker from 'primevue/colorpicker';
-import Button from 'primevue/button';
+import ColorPicker from 'primevue/colorpicker'
+import Button from 'primevue/button'
 
 import 'primevue/resources/themes/lara-light-teal/theme.css'
 import 'primeicons/primeicons.css'
