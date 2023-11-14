@@ -12,13 +12,15 @@
       <PreloadedImage id="cover" :src="albumArt || fakeAlbumArt" alt="Album Art" />
     </div>
     <div class="media__info">
-      <div class="track__name">
-        {{ trackName || fakeTitle }}
+      <div class="media__info__track">
+        <div class="track__name">
+          {{ trackName || fakeTitle }}
+        </div>
+        <div v-show="showArtist" class="track__artist" v-text="artistName || fakeArtist"></div>
       </div>
-      <div v-show="showArtist" class="track__artist" v-text="artistName || fakeArtist"></div>
-    </div>
-    <div v-show="showSpotifyLogo" class="spotify-logo">
-      <img src="@/assets/spotify-logo-without-text.svg" alt="Spotify" />
+      <div v-show="showSpotifyLogo" class="spotify-logo">
+        <img src="@/assets/spotify-logo-without-text.svg" alt="Spotify" />
+      </div>
     </div>
   </div>
 </template>
