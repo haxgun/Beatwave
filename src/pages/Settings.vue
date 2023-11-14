@@ -13,6 +13,9 @@
               :showArtist="settings.showArtist"
               :accessToken="accessToken"
               :showBackground="settings.showBackground"
+              :fakeTitle="settings.fakeTitle"
+              :fakeArtist="settings.fakeArtist"
+              :fakeAlbumArt="settings.fakeAlbumArt"
             />
           </div>
           <div class="preview__background">
@@ -55,7 +58,10 @@ export default {
     settings: {
       showAlbumArt: true,
       showArtist: true,
-      showBackground: true
+      showBackground: true,
+      fakeTitle: 'Blinding Lights',
+      fakeArtist: 'The Weeknd',
+      fakeAlbumArt: '/src/assets/fakeAlbumArt.webp'
     }
   })
 }

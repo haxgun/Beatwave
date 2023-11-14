@@ -1,15 +1,15 @@
 <template>
   <div
-    v-if="albumArt || artistName"
+    v-if="albumArt || artistName || fakeArtist"
     :style="{ backgroundColor: showBackground ? 'rgb(0 0 0 / 60%)' : 'transparent' }"
     class="media"
   >
-    <div v-if="showAlbumArt && albumArt" class="media__image">
-      <PreloadedImage id="cover" :src="albumArt" alt="Album Art" />
+    <div v-if="showAlbumArt" class="media__image">
+      <PreloadedImage id="cover" :src="albumArt || fakeAlbumArt" alt="Album Art" />
     </div>
     <div class="media__info">
-      <div class="track__name">{{ trackName }}</div>
-      <div v-if="showArtist" class="track__artist">{{ artistName }}</div>
+      <div class="track__name" v-text="trackName || fakeTitle"></div>
+      <div v-if="showArtist" class="track__artist" v-text="artistName || fakeArtist"></div>
     </div>
   </div>
 </template>
@@ -41,6 +41,21 @@ export default {
     },
 
     accessToken: {
+      type: String,
+      default: null
+    },
+
+    fakeTitle: {
+      type: String,
+      default: null
+    },
+
+    fakeArtist: {
+      type: String,
+      default: null
+    },
+
+    fakeAlbumArt: {
       type: String,
       default: null
     }
