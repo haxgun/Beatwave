@@ -1,6 +1,10 @@
 <template>
-  <div v-if="albumArt || artistName" :style="{ backgroundColor: showBackground ? 'rgb(0 0 0 / 60%)' : 'transparent' }" class="media">
-    <div v-if="showAlbumArt && albumArt " class="media__image">
+  <div
+    v-if="albumArt || artistName"
+    :style="{ backgroundColor: showBackground ? 'rgb(0 0 0 / 60%)' : 'transparent' }"
+    class="media"
+  >
+    <div v-if="showAlbumArt && albumArt" class="media__image">
       <PreloadedImage id="cover" :src="albumArt" alt="Album Art" />
     </div>
     <div class="media__info">

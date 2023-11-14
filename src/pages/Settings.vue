@@ -16,10 +16,10 @@
             />
           </div>
           <div class="preview__background">
-            <img src="@/assets/preview_bg.webp" alt="">
+            <img src="@/assets/preview_bg.webp" alt="" />
           </div>
         </div>
-        <InputText rows="5" cols="82" class="textarea" readonly v-model="browserSourceUrl"/>
+        <InputText rows="5" cols="82" class="textarea" readonly v-model="browserSourceUrl" />
       </div>
     </div>
   </div>
