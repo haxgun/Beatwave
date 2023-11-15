@@ -29,19 +29,20 @@ export default {
 
   mounted() {
     const {
+      accessToken,
+      colorBG,
       showAlbumArt,
       showArtist,
       showBackground,
-      showSpotifyLogo,
       showMaxWidth,
-      colorBG,
-      accessToken
+      showSpotifyLogo
     } = this.$route.query
-    this.showAlbumArt = Boolean(showAlbumArt)
-    this.showArtist = Boolean(showArtist)
-    this.showBackground = Boolean(showBackground)
-    this.showSpotifyLogo = Boolean(showSpotifyLogo)
-    this.showMaxWidth = Boolean(showMaxWidth)
+
+    this.showAlbumArt = JSON.parse(showAlbumArt)
+    this.showArtist = JSON.parse(showArtist)
+    this.showBackground = JSON.parse(showBackground)
+    this.showSpotifyLogo = JSON.parse(showSpotifyLogo)
+    this.showMaxWidth = JSON.parse(showMaxWidth)
     this.colorBG = colorBG
     this.accessToken = accessToken
   }
