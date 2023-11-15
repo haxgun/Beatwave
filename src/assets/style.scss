@@ -97,16 +97,6 @@ span {
         &:active {
           background: $spotify-btn-color-active;
         }
-
-        .spotify-logo {
-          line-height: 0;
-          svg {
-            $spotify-logo-size: 1.5rem;
-            width: $spotify-logo-size;
-            height: $spotify-logo-size;
-            fill: $btn-text-color;
-          }
-        }
       }
 
       .footer {
@@ -133,7 +123,7 @@ span {
   .media__image {
     width: 3.25rem;
     height: 3.25rem;
-    border-radius: 0.5rem;
+    //border-radius: 0.5rem;
     background-color: transparent;
     overflow: hidden;
     flex-shrink: 0;

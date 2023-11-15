@@ -23,17 +23,21 @@
       </div>
     </div>
   </div>
+  <a :href="trackLink" class="btn">
+    <SpotifyLogo/>
+    PLAY ON SPOTIFY</a>
 </template>
 
 <script>
 import fakeAlbumArt from '@/assets/fakeAlbumArt.webp'
 import PreloadedImage from '@/components/PreloadedImage.vue'
 import axios from 'axios'
+import SpotifyLogo from "@/components/SpotifyLogo.vue";
 
 const endpointUri = 'https://api.spotify.com/v1/me/player/currently-playing'
 
 export default {
-  components: { PreloadedImage },
+  components: {SpotifyLogo, PreloadedImage },
 
   props: {
     showArtist: {
@@ -87,12 +91,12 @@ export default {
   }),
 
   computed: {
-    shouldDisplayFirstTrackName() {
-      return (this.trackName || this.fakeTitle).length > 27
-    },
-
     fakeAlbumArt() {
       return fakeAlbumArt
+    },
+
+    trackLink() {
+      return this.userPlayer ? this.userPlayer.item.external_urls.spotify : null
     },
 
     trackName() {
@@ -129,11 +133,28 @@ export default {
       axios.get(endpointUri, { headers }).then((response) => {
         this.userPlayer = response.data
 
-        setTimeout(this.loadUserPlayer, 5000)
+        setTimeout(this.loadUserPlayer, 1000)
       })
     }
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.btn {
+  width: 220px;
+  align-items: center;
+  border: none;
+  color: #e8e8e8;
+  display: flex;
+  gap: 0.75rem;
+  height: 3.5rem;
+  padding: 0 1.5rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: all 0.2s;
+  text-decoration: none;
+  border-radius: 999px !important;
+  background-color: #1db954 !important;
+}
+</style>
