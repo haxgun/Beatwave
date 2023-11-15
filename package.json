@@ -2,6 +2,7 @@
   "name": "obs-spotify",
   "private": true,
   "version": "0.0.0",
+  "browserslist": ["defaults"],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -12,6 +13,8 @@
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
     "sass": "^1.69.5",
     "vite": "^4.4.5",
     "vue": "^3.3.8",

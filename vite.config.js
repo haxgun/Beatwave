@@ -1,16 +1,18 @@
-import {dirname, resolve} from "path";
 import vue from '@vitejs/plugin-vue'
 import {defineConfig} from "vite";
 import {fileURLToPath, URL} from "node:url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import autoprefixer from "autoprefixer";
 
 export default defineConfig({
   devServer: {
     port: 5000
   },
   plugins: [vue()],
+  css: {
+    postcss: {
+      plugins: [autoprefixer({})],
+    },
+  },
   clearScreen: false,
   resolve: {
     alias: {
@@ -19,11 +21,6 @@ export default defineConfig({
   },
   build: {
     target: "esnext",
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, "index.html"),
-      },
-    },
   },
 });
 
