@@ -24,20 +24,21 @@
     </div>
   </div>
   <a :href="trackLink" class="btn">
-    <SpotifyLogo/>
-    PLAY ON SPOTIFY</a>
+    <SpotifyLogo />
+    PLAY ON SPOTIFY</a
+  >
 </template>
 
 <script>
 import fakeAlbumArt from '@/assets/fakeAlbumArt.webp'
 import PreloadedImage from '@/components/PreloadedImage.vue'
+import SpotifyLogo from '@/components/SpotifyLogo.vue'
 import axios from 'axios'
-import SpotifyLogo from "@/components/SpotifyLogo.vue";
 
 const endpointUri = 'https://api.spotify.com/v1/me/player/currently-playing'
 
 export default {
-  components: {SpotifyLogo, PreloadedImage },
+  components: { SpotifyLogo, PreloadedImage },
 
   props: {
     showArtist: {
@@ -133,7 +134,7 @@ export default {
       axios.get(endpointUri, { headers }).then((response) => {
         this.userPlayer = response.data
 
-        setTimeout(this.loadUserPlayer, 1000)
+        setTimeout(this.loadUserPlayer, 5000)
       })
     }
   }
