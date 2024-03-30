@@ -17,10 +17,10 @@
         </p>
         <p class="track__artist" v-text="artistName || fakeArtist"></p>
 
-        <div class="progress">
+        <!-- <div class="progress">
           <div class="track__progress"></div>
           <div class="track__progress__bg"></div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="spotify-logo">
@@ -92,7 +92,10 @@ export default {
         return null
       }
 
+      console.log(this.userPlayer)
+
       return this.userPlayer.item.album.images[0].url
+      
     }
   },
 
