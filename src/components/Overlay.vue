@@ -2,31 +2,31 @@
   <div
     v-if="albumArt || artistName || fakeArtist"
     :style="{
-      backgroundColor: showBackground ? `#${colorBG}99` : 'transparent',
-      width: showMaxWidth ? 'max-content' : '',
-      maxWidth: showMaxWidth ? '420px' : ''
+      width: showMaxWidth ? '' : 'max-content',
+      maxWidth: showMaxWidth ? '' : '420px'
     }"
     class="media"
   >
-    <div v-show="showAlbumArt" class="media__image">
+    <div class="media__image">
       <PreloadedImage id="cover" :src="albumArt || fakeAlbumArt" alt="Album Art" />
     </div>
     <div class="media__info">
       <div class="media__info__track">
-        <div class="track__name">
+        <p class="track__name">
           {{ trackName || fakeTitle }}
+        </p>
+        <p class="track__artist" v-text="artistName || fakeArtist"></p>
+
+        <div class="progress">
+          <div class="track__progress"></div>
+          <div class="track__progress__bg"></div>
         </div>
-        <div v-show="showArtist" class="track__artist" v-text="artistName || fakeArtist"></div>
-      </div>
-      <div v-show="showSpotifyLogo" class="spotify-logo">
-        <img src="@/assets/spotify-logo-without-text.svg" alt="Spotify" />
       </div>
     </div>
+    <div class="spotify-logo">
+        <img src="@/assets/spotify-logo-without-text.svg" alt="Spotify" />
+      </div>
   </div>
-  <a :href="trackLink" class="btn">
-    <SpotifyLogo />
-    PLAY ON SPOTIFY</a
-  >
 </template>
 
 <script>
@@ -41,31 +41,6 @@ export default {
   components: { SpotifyLogo, PreloadedImage },
 
   props: {
-    showArtist: {
-      type: Boolean,
-      default: true
-    },
-
-    showAlbumArt: {
-      type: Boolean,
-      default: true
-    },
-
-    showBackground: {
-      type: Boolean,
-      default: true
-    },
-
-    colorBG: {
-      type: String,
-      default: '000000'
-    },
-
-    showSpotifyLogo: {
-      type: Boolean,
-      default: true
-    },
-
     showMaxWidth: {
       type: Boolean,
       default: true
@@ -109,7 +84,7 @@ export default {
         return null
       }
 
-      return this.userPlayer.item.artists[0].name
+      return this.userPlayer.item.artists.map(artist => artist.name).join(', ')
     },
 
     albumArt() {

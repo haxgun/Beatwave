@@ -2,11 +2,12 @@
   <div class="main">
     <div class="main__body">
       <div class="main__container">
+        <div class="blick"></div>
+        <div class="blick2"></div>
         <div class="logo">
           <img src="@/assets/logo.svg" alt="Logotype" width="140px" />
           <span class="logo__gradient"></span>
         </div>
-
         <h1 class="title">Milady</h1>
         <p class="description">The ultimate accessory for your Stream.</p>
         <p class="subdescription">
@@ -17,7 +18,7 @@
             Spotify</span
           >
         </p>
-        <a :href="loginUri" v-show="showLoginButton" class="btn"> Login with Spotify </a>
+        <a :href="loginUri" v-show="showLoginButton" class="btn"><SpotifyLogo :size="'24px'" :color="'#fff'" /> Login with Spotify </a>
         <p class="footer">
           Completely free.<br />
           We do not store any information.<br />
