@@ -19,6 +19,8 @@ Milady displays on your Stream information about the current track, the artist a
 
 ## TODO
 - [ ] Localization (i18n) support.
+- [ ] Fix all known bugs.
+- [ ] Add more features and description pages.
 
 ## License
 
