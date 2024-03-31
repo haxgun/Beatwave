@@ -3,6 +3,10 @@
     v-if="accessToken"
     :showMaxWidth="showMaxWidth"
     :accessToken="accessToken"
+    :showBorder="showBorder"
+    :trimArtist="trimArtist"
+    :bgOpacity="bgOpacity"
+    :borderSize="borderSize"
   />
 </template>
 
@@ -21,9 +25,17 @@ export default {
     const {
       accessToken,
       showMaxWidth,
+      showBorder,
+      trimArtist,
+      bgOpacity,
+      borderSize
     } = this.$route.query
 
     this.showMaxWidth = JSON.parse(showMaxWidth)
+    this.showBorder = JSON.parse(showBorder)
+    this.trimArtist = JSON.parse(trimArtist)
+    this.bgOpacity = JSON.parse(bgOpacity)
+    this.borderSize = JSON.parse(borderSize)
     this.accessToken = accessToken
   }
 }

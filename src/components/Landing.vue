@@ -48,4 +48,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.main {
+  min-height: 100vh;
+}
+</style>
