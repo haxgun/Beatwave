@@ -10,17 +10,12 @@
 [![Stars](https://img.shields.io/github/stars/haxgun/Milady)](https://github.com/haxgun/Milady/stargazers)
 
 The ultimate accessory for your Stream.
-Milady displays on your Stream information about the current track, the artist and the cover of the track playing on Spotify
+<br>Milady displays on your Stream information about the current track, the artist and the cover of the track playing on Spotify
 
 ## Features
 - Free & open-source.
 - Beautiful, modern design
 - Customizable
-
-## TODO
-- [ ] Localization (i18n) support.
-- [ ] Fix all known bugs.
-- [ ] Add more features and description pages.
 
 ## License
 
