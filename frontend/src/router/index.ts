@@ -14,20 +14,23 @@ const router = createRouter({
       component: () => import('@/views/IndexView.vue'),
       beforeEnter: (to, from, next) => hasAccessToken() ? next({ name: 'setttings' }) : next(),
     },
-
     {
       name: 'settings',
       path: '/settings',
       component: () => import('@/views/SettingsView.vue'),
       beforeEnter: (to, from, next) => hasAccessToken() ? next() : next({ name: 'index' }),
     },
-
     {
       name: 'overlay',
       path: '/overlay',
       component: () => import('@/views/OverlayView.vue'),
       props: (route) => ({ overlayID: route.params.overlayID })
-    }
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      component: () => import('@/views/PageNotFoundView.vue'),
+      meta: { hideHighlight: true },
+    },
   ]
 })
 
