@@ -9,14 +9,23 @@
 [![Website](https://img.shields.io/website?url=https://song.haxgun.ru/)](https://song.haxgun.ru/)
 [![Stars](https://img.shields.io/github/stars/haxgun/Milady)](https://github.com/haxgun/Milady/stargazers)
 
-The ultimate accessory for your Stream.
-<br>Milady displays on your Stream information about the current track, the artist and the cover of the track playing on Spotify
+The ultimate accessory for your Stream.  
+<br>Milady displays the current track, artist, and album cover from Spotify on your stream.
 
-## Features
-- Free & open-source.
-- Beautiful, modern design
-- Customizable
+---
 
-## License
+## 🎶 Features
 
-[Milady](https://github.com/haxgun/Milady) is completely free and has an [the MIT license](https://github.com/haxgun/Milady/blob/main/LICENSE). If you want, you can put a star on Github.
+- **Free & Open-Source**: No hidden costs, fully accessible for everyone.
+- **Beautiful, Modern Design**: Clean and stylish visuals that integrate seamlessly into any stream.
+- **Fully Customizable**: Tailor the overlay to match your unique stream aesthetic.
+
+---
+
+## 📜 License
+
+**Melody** is licensed under the **[MIT License](https://github.com/haxgun/valory/blob/main/LICENSE)**:
+
+* **Freedom:** Use, modify, and distribute freely.
+* **Flexibility:** Adjust the code to suit your needs.
+* **Community:** Share and contribute back to the project.
