@@ -23,7 +23,7 @@ import SpotifyIcon from '@/components/icons/SpotifyIcon.vue'
             Spotify</span
           >
         </p>
-        <a href="http://localhost:8000/api/token/login" class="btn">
+        <a href="http://localhost:8000/auth/login" class="btn">
           <SpotifyIcon :size="24" :color="'#fff'" />
           Login with Spotify
         </a>
