@@ -48,7 +48,8 @@ def callback(request: Request, response: Response):
     exchanges it for access and refresh tokens (access and refresh tokens) and sets them in the client's cookies.
     If the state validation fails, an error is returned.
     """
-
+    if len(request.query_params.values()) == 0:
+        raise HTTPException(status_code=400, detail="Not query parameters received")
     code = request.query_params["code"]
     state = request.query_params["state"]
     stored_state = request.cookies.get(STATE_KEY)
