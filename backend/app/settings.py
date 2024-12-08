@@ -18,3 +18,7 @@ REDIRECT_URI = environ.get("REDIRECT_URI")
 SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize"
 SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
 
+API_TITLE = environ.get("API_TITLE", "Milady API")
+API_DESCRIPTION = environ.get("API_DESCRIPTION", "API for logging in to Spotify")
+API_VERSION = environ.get("API_VERSION", "1.0.0")
+
