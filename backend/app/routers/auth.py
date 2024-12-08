@@ -11,7 +11,7 @@ from app import settings
 router = APIRouter()
 STATE_KEY = "spotify_auth_state"
 
-def generate_random_string(string_length):
+def generate_random_string(string_length: int) -> str:
     possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
     text = "".join(
         [
@@ -19,13 +19,13 @@ def generate_random_string(string_length):
             for i in range(string_length)
         ]
     )
-
     return text
 
-@router.get("/login")
+@router.get("/login", summary="Login with Spotify")
 def login():
-    """Перенаправляем пользователя на страницу авторизации Spotify"""
-    state = generate_random_string(20)
+    """Redirecting the user to the Spotify authorization page"""
+
+    state = generate_random_string(16)
     scopes = "user-read-currently-playing"
     query_params = {
         "response_type": "code",
@@ -40,17 +40,22 @@ def login():
     response.set_cookie(key=STATE_KEY, value=state)
     return response
 
-@router.get("/callback")
+@router.get("/callback", summary="Callback endpoint")
 def callback(request: Request, response: Response):
+    """
+    The callback endpoint handles redirection after user authorization via Spotify.
+    It checks the status of the request (state), extracts the authorization code (code),
+    exchanges it for access and refresh tokens (access and refresh tokens) and sets them in the client's cookies.
+    If the state validation fails, an error is returned.
+    """
 
     code = request.query_params["code"]
     state = request.query_params["state"]
     stored_state = request.cookies.get(STATE_KEY)
 
-    if state == None or state != stored_state:
+    if state is None or state != stored_state:
         raise HTTPException(status_code=400, detail="State mismatch")
     else:
-
         response.delete_cookie(STATE_KEY, path="/", domain=None)
 
         url = "https://accounts.spotify.com/api/token"
@@ -79,8 +84,12 @@ def callback(request: Request, response: Response):
         return response
 
 
-@router.get("/refresh_token")
-def refresh_token(request: Request):
+@router.get("/refresh_token", summary="Refreshing the access token")
+def refresh_token_route(request: Request):
+    """
+    Refreshing the access token using the refresh token provided in the request parameters.
+    Returns the new access token.
+    """
 
     refresh_token = request.query_params["refresh_token"]
     request_string = settings.SPOTIFY_CLIENT_ID + ":" + settings.SPOTIFY_CLIENT_SECRET
