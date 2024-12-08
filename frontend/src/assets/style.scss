@@ -108,7 +108,7 @@ span {
 }
 
 .media {
-  padding: .75rem;
+  padding: 0.75rem;
   display: flex;
   position: relative;
   justify-content: space-between;
@@ -181,7 +181,7 @@ span {
     }
 
     .track__progress {
-      background-color: hsla(0,0%,100%,.5);
+      background-color: hsla(0, 0%, 100%, 0.5);
       position: absolute;
       top: 0;
       left: 0;
@@ -191,11 +191,10 @@ span {
     }
 
     .track__progress__bg {
-      background-color: hsla(0,0%,100%,.5);
+      background-color: hsla(0, 0%, 100%, 0.5);
       position: relative;
       height: 12px;
       border-radius: 999px;
-      
     }
   }
 
@@ -272,7 +271,7 @@ span {
       gap: 6px;
       cursor: pointer;
       border-radius: 6px;
-      border: 1px solid rgb(30,215,96);
+      border: 1px solid rgb(30, 215, 96);
       overflow: hidden;
       height: 36px;
 
@@ -367,7 +366,6 @@ span {
     filter: blur(16px);
   }
 }
-
 
 .blick {
   position: absolute;

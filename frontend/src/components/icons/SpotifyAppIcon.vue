@@ -1,16 +1,14 @@
-<script>
-export default {
-  props: {
-    size: {
-      type: Number,
-      default: 24
-    },
-    color: {
-      type: String,
-      default: '#fff'
-    }
+<script setup>
+const props = defineProps({
+  size: {
+    type: Number,
+    default: 24
+  },
+  color: {
+    type: String,
+    default: '#fff'
   }
-}
+})
 </script>
 
 <template>

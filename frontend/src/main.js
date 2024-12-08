@@ -5,22 +5,22 @@ import 'primeicons/primeicons.css'
 import Button from 'primevue/button'
 import ColorPicker from 'primevue/colorpicker'
 import PrimeVue from 'primevue/config'
+import Dropdown from 'primevue/dropdown'
 import InputSwitch from 'primevue/inputswitch'
 import InputText from 'primevue/inputtext'
-import Slider from 'primevue/slider';
-import Dropdown from 'primevue/dropdown';
 import 'primevue/resources/themes/lara-light-teal/theme.css'
+import Slider from 'primevue/slider'
 import { createApp } from 'vue'
 
 const app = createApp(App)
 
-app.use(PrimeVue, { ripple: true })
-app.use(router)
-
-app.component('InputSwitch', InputSwitch)
-app.component('InputText', InputText)
-app.component('ColorPicker', ColorPicker)
-app.component('Slider', Slider)
-app.component('Dropdown', Dropdown)
-app.component('Button', Button)
-app.mount('#app')
+app
+  .use(PrimeVue, { ripple: true })
+  .use(router)
+  .component('InputText', InputText)
+  .component('ColorPicker', ColorPicker)
+  .component('InputSwitch', InputSwitch)
+  .component('Slider', Slider)
+  .component('Dropdown', Dropdown)
+  .component('Button', Button)
+  .mount('#app')
