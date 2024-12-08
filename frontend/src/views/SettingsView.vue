@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import HeaderItem from '@/components/HeaderItem.vue'
 import OverlayItem from '@/components/OverlayItem.vue'
 import axios from 'axios'

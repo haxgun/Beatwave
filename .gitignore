@@ -54,3 +54,5 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 /package-lock.json
 .env
+*.tsbuildinfo
+

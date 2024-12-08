@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import fakeAlbumArt from '@/assets/fakeAlbumArt.webp'
 import PreloadedImage from '@/components/PreloadedImage.vue'
 import axios from 'axios'
@@ -43,10 +43,6 @@ const props = defineProps({
 
 const userPlayer = ref(null)
 const borderRadiusValues = [0, 12, 18, 24, 9999]
-
-const trackLink = computed(() => {
-  return userPlayer.value ? userPlayer.value.item.external_urls.spotify : null
-})
 
 const trackName = computed(() => {
   return userPlayer.value ? userPlayer.value.item.name : null
@@ -126,9 +122,9 @@ onMounted(() => {
         </div> -->
       </div>
     </div>
-    <!-- <div class="spotify-logo">
-      <SpotifyIcon size="24"/>
-    </div> -->
+    <div class="spotify-logo">
+      <SpotifyIcon color="#1db954" :size="24" />
+    </div>
   </div>
 </template>
 

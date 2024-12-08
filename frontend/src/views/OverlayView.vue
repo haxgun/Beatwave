@@ -1,6 +1,7 @@
-<script setup>
+<script lang="ts" setup>
 import OverlayItem from '@/components/OverlayItem.vue'
 import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 const showMaxWidth = ref(true)
 const showBorder = ref(false)

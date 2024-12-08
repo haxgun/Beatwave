@@ -1,4 +1,5 @@
-<script setup>
+<script lang="ts" setup>
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps({
   size: {
     type: Number,

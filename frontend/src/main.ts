@@ -1,6 +1,6 @@
 import App from '@/App.vue'
 import '@/assets/style.scss'
-import router from '@/router'
+import router from '@/router/index.ts'
 import 'primeicons/primeicons.css'
 import Button from 'primevue/button'
 import ColorPicker from 'primevue/colorpicker'

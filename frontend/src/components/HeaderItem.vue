@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import GithubIcon from '@/components/icons/GithubIcon.vue'
 import MelodyIcon from '@/components/icons/MelodyIcon.vue'
 </script>
@@ -7,7 +7,7 @@ import MelodyIcon from '@/components/icons/MelodyIcon.vue'
   <nav>
     <div class="nav">
       <router-link :to="{ name: 'index' }">
-        <MelodyIcon size="40" />
+        <MelodyIcon :size="40" />
       </router-link>
       <div class="navigation">
         <router-link :to="{ name: 'settings' }"> Get started </router-link>
@@ -16,7 +16,7 @@ import MelodyIcon from '@/components/icons/MelodyIcon.vue'
       </div>
       <div class="socials">
         <a href="https://github.com/haxgun/Milady" target="__blank">
-          <GithubIcon size="20" />
+          <GithubIcon :size="20" />
         </a>
       </div>
     </div>

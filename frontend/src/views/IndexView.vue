@@ -1,6 +1,6 @@
-<script setup>
-import SpotifyIcon from '@/components/icons/SpotifyIcon.vue'
+<script lang="ts" setup>
 import MelodyIcon from '@/components/icons/MelodyIcon.vue'
+import SpotifyIcon from '@/components/icons/SpotifyIcon.vue'
 </script>
 
 <template>
@@ -10,7 +10,7 @@ import MelodyIcon from '@/components/icons/MelodyIcon.vue'
         <div class="blick"></div>
         <div class="blick2"></div>
         <div class="logo">
-          <MelodyIcon size="140"/>
+          <MelodyIcon :size="140" />
           <span class="logo__gradient"></span>
         </div>
         <h1 class="title">Milady</h1>
