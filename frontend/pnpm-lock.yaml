@@ -11,6 +11,9 @@ importers:
       '@rushstack/eslint-patch':
         specifier: ^1.10.1
         version: 1.10.1
+      '@untitledui-icons/vue':
+        specifier: ^1.0.3
+        version: 1.0.3(vue@3.5.13(typescript@5.6.3))
       ant-design-vue:
         specifier: ~4.1.2
         version: 4.1.2(vue@3.5.13(typescript@5.6.3))
@@ -806,6 +809,11 @@ packages:
   '@typescript-eslint/visitor-keys@8.17.0':
     resolution: {integrity: sha512-1Hm7THLpO6ww5QU6H/Qp+AusUUl+z/CAm3cNZZ0jQvon9yicgO7Rwd+/WWRpMKLYV6p2UvdbR27c86rzCPpreg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@untitledui-icons/vue@1.0.3':
+    resolution: {integrity: sha512-pK36HbD7ViH7uwMSkA69Rrn51Qq0OlMcJSuEHbIsBFwwWoPXtWWVS8IqxmD/GAQ72bm8feGUgJ9OwDPtVsMFhg==}
+    peerDependencies:
+      vue: '>= 3'
 
   '@vitejs/plugin-vue-jsx@4.1.1':
     resolution: {integrity: sha512-uMJqv/7u1zz/9NbWAD3XdjaY20tKTf17XVfQ9zq4wY1BjsB/PjpJPMe2xiG39QpP4ZdhYNhm4Hvo66uJrykNLA==}
@@ -2929,6 +2937,10 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.17.0
       eslint-visitor-keys: 4.2.0
+
+  '@untitledui-icons/vue@1.0.3(vue@3.5.13(typescript@5.6.3))':
+    dependencies:
+      vue: 3.5.13(typescript@5.6.3)
 
   '@vitejs/plugin-vue-jsx@4.1.1(vite@6.0.3(@types/node@22.10.1)(sass@1.72.0))(vue@3.5.13(typescript@5.6.3))':
     dependencies:

@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@rushstack/eslint-patch": "^1.10.1",
+    "@untitledui-icons/vue": "^1.0.3",
     "ant-design-vue": "~4.1.2",
     "axios": "^1.6.8",
     "build-url": "^6.0.1",
