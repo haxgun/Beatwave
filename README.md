@@ -12,15 +12,11 @@
 The ultimate accessory for your Stream.  
 <br>Milady displays the current track, artist, and album cover from Spotify on your stream.
 
----
-
 ## 🎶 Features
 
 - **Free & Open-Source**: No hidden costs, fully accessible for everyone.
 - **Beautiful, Modern Design**: Clean and stylish visuals that integrate seamlessly into any stream.
 - **Fully Customizable**: Tailor the overlay to match your unique stream aesthetic.
-
----
 
 ## 📜 License
 
