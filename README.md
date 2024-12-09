@@ -4,7 +4,6 @@
 
 # Milady
 
-[![CI/CD](https://github.com/haxgun/Milady/actions/workflows/master.yml/badge.svg)](https://github.com/haxgun/Milady/actions/workflows/master.yml)
 [![GitHub License](https://img.shields.io/github/license/haxgun/Milady)](https://github.com/haxgun/Milady/blob/main/LICENSE)
 [![Website](https://img.shields.io/website?url=https://song.haxgun.ru/)](https://song.haxgun.ru/)
 [![Stars](https://img.shields.io/github/stars/haxgun/Milady)](https://github.com/haxgun/Milady/stargazers)
