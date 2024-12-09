@@ -3,10 +3,9 @@ import fakeAlbumArt from '@/assets/fakeAlbumArt.webp'
 import PreloadedImage from '@/components/PreloadedImage.vue'
 import axios from 'axios'
 import { computed, onMounted, ref } from 'vue'
+import SpotifyIcon from '@/components/icons/SpotifyIcon.vue'
 
-// import SpotifyIcon from '@/components/icons/SpotifyIcon.vue'
-
-const props = defineProps({
+defineProps({
   showMaxWidth: {
     type: Boolean,
     default: true
@@ -36,6 +35,15 @@ const props = defineProps({
     default: null
   }
 })
+const accessToken = ref(document.cookie
+  .split('; ')
+  .find((row) => row.startsWith('access_token='))
+  ?.split('=')[1])
+
+const refreshToken = ref(document.cookie
+  .split('; ')
+  .find((row) => row.startsWith('refresh_token='))
+  ?.split('=')[1])
 
 const userPlayer = ref(null)
 const borderRadiusValues = [0, 12, 18, 24, 9999]
@@ -67,14 +75,28 @@ const albumArt = computed(() => {
 
 const loadUserPlayer = () => {
   const headers = {
-    Authorization: `Bearer ${props.accessToken}`
+    Authorization: `Bearer ${accessToken.value}`
   }
 
   axios
     .get('https://api.spotify.com/v1/me/player/currently-playing', { headers })
     .then((response) => {
       userPlayer.value = response.data
-      setTimeout(loadUserPlayer, 5000)
+      setTimeout(loadUserPlayer, 1000)
+    })
+    .catch(async (error) => {
+      if ((error.response && error.response.status === 401) || (error.response && error.response.status === 400)) {
+        try {
+          const refreshResponse = await axios.get(`http://localhost:8080/auth/refresh_token?refresh_token=${refreshToken.value}`);
+
+          accessToken.value = refreshResponse.data.access_token
+          document.cookie = `access_token=${accessToken.value}; path=/;`;
+
+          loadUserPlayer();
+        } catch (refreshError) {
+          console.error('Error refreshing token:', refreshError);
+        }
+      }
     })
 }
 
