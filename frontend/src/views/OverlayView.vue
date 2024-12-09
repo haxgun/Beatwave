@@ -12,7 +12,6 @@ const accessToken = ref(null)
 
 onMounted(() => {
   const {
-    accessToken: token,
     showMaxWidth: maxWidth,
     showBorder,
     trimArtist,
@@ -25,7 +24,6 @@ onMounted(() => {
   trimArtist.value = JSON.parse(trimArtist)
   bgOpacity.value = JSON.parse(bgOpacity)
   borderSize.value = JSON.parse(borderSize)
-  accessToken.value = token
 })
 </script>
 

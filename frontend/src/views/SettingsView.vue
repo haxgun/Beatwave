@@ -1,9 +1,8 @@
 <script lang="ts" setup>
 import HeaderItem from '@/components/HeaderItem.vue'
 import OverlayItem from '@/components/OverlayItem.vue'
-import axios from 'axios'
 import queryString from 'query-string'
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 
 const settings = ref({
   showMaxWidth: false,
@@ -13,48 +12,13 @@ const settings = ref({
   borderSize: 3
 })
 
-const accessToken = computed(() => {
-  const token = getCookie('access_token')
-  if (token) {
-    return token
-  }
-  return null
-})
-
-const refreshToken = computed(() => getCookie('refresh_token'))
-
 const browserSourceUrl = computed(() => {
   const nowPlayingPage = { href: '/overlay/' }
   const base = `${location.origin}${nowPlayingPage.href}`
   const query = queryString.stringify({
-    accessToken: accessToken.value,
     ...settings.value
   })
   return `${base}?${query}`
-})
-
-const getCookie = (name) => {
-  const value = `; ${document.cookie}`
-  const parts = value.split(`; ${name}=`)
-  if (parts.length === 2) return parts.pop().split(';').shift()
-}
-
-const refreshAccessToken = async () => {
-  const response = await axios.post('http://localhost:8000/api/token/refresh_token', {
-    refresh_token: refreshToken.value
-  })
-  const { access_token, refresh_token } = response.data
-  document.cookie = `access_token=${access_token}; path=/; secure; SameSite=None`
-  document.cookie = `refresh_token=${refresh_token}; path=/; secure; SameSite=None`
-}
-
-onMounted(() => {
-  if (accessToken.value) {
-    const tokenExp = new Date(Number(getCookie('access_token_expiration')))
-    if (new Date() > tokenExp) {
-      refreshAccessToken()
-    }
-  }
 })
 </script>
 
@@ -89,7 +53,6 @@ onMounted(() => {
                   :borderSize="settings.borderSize"
                   :fakeTitle="'Track name'"
                   :fakeArtist="'Artist name'"
-                  :accessToken="accessToken"
                 />
               </div>
               <div class="preview__background">
@@ -115,13 +78,6 @@ onMounted(() => {
             </div>
           </div>
           <div class="settings__content">
-            <!-- <span>
-              <label for="showMaxWidth">Choosing a preset</label>
-              <a-space>
-                <a-select v-model:value="value3" style="width: 120px" loading :options="options3"></a-select>
-              </a-space>
-            </span> -->
-
             <span>
               <a-tooltip>
                 <template #title>Widget output with no width limit</template>
@@ -188,10 +144,6 @@ onMounted(() => {
               <label for="trimArtist">Trim Artist</label>
               <a-switch v-model:checked="settings.trimArtist" />
             </span>
-            <!-- <span>
-              <label for="showMaxWidth">Adaptive Color</label>
-              <a-switch v-model:checked="settings.showMaxWidth" />
-            </span> -->
           </div>
           <div class="settings__sliders">
             <span>
@@ -258,15 +210,6 @@ onMounted(() => {
               />
             </span>
           </div>
-          <!-- <div class="settings__description">
-            <p class="settings__description__title">
-              Options
-            </p>
-            <ul>
-              <li><span>Choosing a preset</span> - Choose the preset that suits you</li>
-              <li><span>Adaptive Color</span> - Changes the background color of the song display to match the album art.</li>
-            </ul>
-          </div> -->
         </div>
       </div>
     </div>

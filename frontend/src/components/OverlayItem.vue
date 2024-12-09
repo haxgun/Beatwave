@@ -27,10 +27,6 @@ const props = defineProps({
     type: Number,
     default: 3
   },
-  accessToken: {
-    type: String,
-    default: null
-  },
   fakeTitle: {
     type: String,
     default: null
@@ -115,11 +111,6 @@ onMounted(() => {
         </p>
         <p v-if="trimArtist" class="track__artist" v-text="trimArtistName"></p>
         <p v-else class="track__artist" v-text="artistName || fakeArtist"></p>
-
-        <!-- <div class="progress">
-          <div class="track__progress"></div>
-          <div class="track__progress__bg"></div>
-        </div> -->
       </div>
     </div>
     <div class="spotify-logo">
@@ -127,5 +118,3 @@ onMounted(() => {
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped></style>
