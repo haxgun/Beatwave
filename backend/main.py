@@ -20,6 +20,3 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-if __name__ == "__main__":
-    uvicorn.run(app="main:app", reload=True, port=8080)

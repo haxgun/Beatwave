@@ -15,4 +15,4 @@ fastapi = {extras = ["all"], version = "*"}
 python_version = "3.13"
 
 [scripts]
-dev = "fastapi dev main.py"
+dev = "uvicorn main:app --reload --port=8080"
