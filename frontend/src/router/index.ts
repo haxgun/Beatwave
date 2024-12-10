@@ -12,7 +12,7 @@ const router = createRouter({
       name: 'index',
       path: '/',
       component: () => import('@/views/IndexView.vue'),
-      beforeEnter: (to, from, next) => hasAccessToken() ? next({ name: 'setttings' }) : next(),
+      beforeEnter: (to, from, next) => hasAccessToken() ? next({ name: 'settings' }) : next(),
     },
     {
       name: 'settings',
