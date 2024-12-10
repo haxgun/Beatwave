@@ -22,3 +22,9 @@ API_TITLE = environ.get("API_TITLE", "Milady API")
 API_DESCRIPTION = environ.get("API_DESCRIPTION", "API for logging in to Spotify")
 API_VERSION = environ.get("API_VERSION", "1.0.0")
 
+DATABASE_LOGIN: str = environ.get("DATABASE_LOGIN")
+DATABASE_PASSWORD: str = environ.get("DATABASE_PASSWORD")
+DATABASE_NAME: str = environ.get("DATABASE_NAME")
+DATABASE_PORT: int = int(environ.get("DATABASE_PORT", 5432))
+
+DATABASE_URL: str = f"postgresql+asyncpg://{DATABASE_LOGIN}:{DATABASE_PASSWORD}@localhost:{DATABASE_PORT}/{DATABASE_NAME}"

@@ -8,6 +8,9 @@ uvicorn = "*"
 python-dotenv = "*"
 requests = "*"
 fastapi = {extras = ["all"], version = "*"}
+sqlmodel = "*"
+asyncpg = "*"
+greenlet = "*"
 
 [dev-packages]
 

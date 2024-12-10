@@ -87,7 +87,12 @@ const loadUserPlayer = () => {
     .catch(async (error) => {
       if ((error.response && error.response.status === 401) || (error.response && error.response.status === 400)) {
         try {
-          const refreshResponse = await axios.get(`http://localhost:8080/auth/refresh_token?refresh_token=${refreshToken.value}`);
+          const refreshResponse = await axios.post(
+            'http://localhost:8080/auth/refresh_token',
+            {
+              refresh_token: refreshToken.value
+            }
+          );
 
           accessToken.value = refreshResponse.data.access_token
           document.cookie = `access_token=${accessToken.value}; path=/;`;
