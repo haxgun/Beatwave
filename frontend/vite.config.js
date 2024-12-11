@@ -8,6 +8,15 @@ import Components from 'unplugin-vue-components/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 
 export default defineConfig({
+  server: {
+    proxy: {
+      '/api': {
+        target: backendUrl,
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, ''), // Если нужно переписать URL
+      },
+    },
+  },
   devServer: {
     port: 5000
   },
