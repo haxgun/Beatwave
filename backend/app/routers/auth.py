@@ -41,7 +41,13 @@ async def login():
     response = RedirectResponse(
         url="https://accounts.spotify.com/authorize?" + urlencode(query_params)
     )
-    response.set_cookie(key=STATE_KEY, value=state)
+    response.set_cookie(
+        key=STATE_KEY,
+        value=state,
+        httponly=True,
+        secure=True,
+        samesite="strict",
+    )
     return response
 
 @router.get("/callback", summary="Callback endpoint")
@@ -58,43 +64,58 @@ async def callback(request: Request, response: Response, session: AsyncSession =
     state = request.query_params["state"]
     stored_state = request.cookies.get(STATE_KEY)
 
-    if state is None or state != stored_state:
-        raise HTTPException(status_code=400, detail="State mismatch")
-    else:
-        response.delete_cookie(STATE_KEY, path="/", domain=None)
+    if not code or not state or state != stored_state:
+        raise HTTPException(status_code=400, detail="Invalid or missing state")
 
-        url = "https://accounts.spotify.com/api/token"
-        request_string = settings.SPOTIFY_CLIENT_ID + ":" + settings.SPOTIFY_CLIENT_SECRET
-        encoded_bytes = base64.b64encode(request_string.encode("utf-8"))
-        encoded_string = str(encoded_bytes, "utf-8")
-        header = {"Authorization": "Basic " + encoded_string}
+    response.delete_cookie(STATE_KEY, path="/", domain=None)
 
-        form_data = {
-            "code": code,
-            "redirect_uri": settings.REDIRECT_URI,
-            "grant_type": "authorization_code",
-        }
+    url = "https://accounts.spotify.com/api/token"
+    request_string = settings.SPOTIFY_CLIENT_ID + ":" + settings.SPOTIFY_CLIENT_SECRET
+    encoded_bytes = base64.b64encode(request_string.encode("utf-8"))
+    encoded_string = str(encoded_bytes, "utf-8")
+    header = {"Authorization": "Basic " + encoded_string}
 
-        api_response = requests.post(url, data=form_data, headers=header)
+    form_data = {
+        "code": code,
+        "redirect_uri": settings.REDIRECT_URI,
+        "grant_type": "authorization_code",
+    }
 
-        if api_response.status_code == 200:
-            data = api_response.json()
-            access_token = data["access_token"]
-            refresh_token = data["refresh_token"]
+    try:
+        api_response = requests.post(url, data=form_data, headers=header, timeout=10)
+        api_response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        raise HTTPException(status_code=500, detail=f"Error requesting tokens: {str(e)}")
 
-            new_user = User(
-                access_token=access_token,
-                refresh_token=refresh_token
-            )
-            session.add(new_user)
-            await session.commit()
-            await session.refresh(new_user)
+    data = api_response.json()
+    access_token = data["access_token"]
+    refresh_token = data["refresh_token"]
 
-            response = RedirectResponse(url=f"{settings.FRONTEND_URL}/settings")
-            response.set_cookie(key="access_token", value=access_token)
-            response.set_cookie(key="refresh_token", value=refresh_token)
+    new_user = User(
+        access_token=access_token,
+        refresh_token=refresh_token
+    )
+    session.add(new_user)
+    await session.commit()
+    await session.refresh(new_user)
 
-        return response
+    response = RedirectResponse(url=f"{settings.FRONTEND_URL}/settings")
+    response.set_cookie(
+        key="access_token",
+        value=access_token,
+        httponly=True,
+        secure=True,
+        samesite="strict"
+    )
+    response.set_cookie(
+        key="refresh_token",
+        value=refresh_token,
+        httponly=True,
+        secure=True,
+        samesite="strict"
+    )
+
+    return response
 
 
 @router.post("/refresh_token", summary="Refreshing the access token")
@@ -113,19 +134,24 @@ async def refresh_token_route(request: Request, refresh_token: str, session: Asy
 
     url = "https://accounts.spotify.com/api/token"
 
-    response = requests.post(url, data=form_data, headers=header)
-    if response.status_code != 200:
-        raise HTTPException(status_code=400, detail="Error with refresh token")
-    else:
-        data = response.json()
-        access_token = data["access_token"]
+    try:
+        response = requests.post(url, data=form_data, headers=headers, timeout=10)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        raise HTTPException(status_code=400, detail=f"Error refreshing token: {str(e)}")
 
-        statement = select(User).where(User.refresh_token == refresh_token)
-        result = await session.exec(statement)
-        user = result.first()
+    data = response.json()
+    access_token = data["access_token"]
 
-        user.access_token = access_token
-        await session.commit()
-        await session.refresh(user)
+    statement = select(User).where(User.refresh_token == refresh_token)
+    result = await session.exec(statement)
+    user = result.first()
 
-        return {"access_token": access_token}
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    user.access_token = access_token
+    await session.commit()
+    await session.refresh(user)
+
+    return {"access_token": access_token}
