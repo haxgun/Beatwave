@@ -103,8 +103,6 @@ async def callback(request: Request, response: Response, session: AsyncSession =
     response.set_cookie(
         key="access_token",
         value=access_token,
-        httponly=True,
-        secure=True,
         samesite="strict"
     )
     response.set_cookie(
