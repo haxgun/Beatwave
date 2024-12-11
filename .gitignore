@@ -55,4 +55,5 @@ fabric.properties
 /package-lock.json
 .env
 *.tsbuildinfo
-
+Pipfile.lock
+pnpm-lock.yaml
