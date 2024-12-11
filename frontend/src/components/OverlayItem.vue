@@ -88,7 +88,7 @@ const loadUserPlayer = () => {
       if ((error.response && error.response.status === 401) || (error.response && error.response.status === 400)) {
         try {
           const refreshResponse = await axios.post(
-            'http://localhost:8080/auth/refresh_token',
+            'http://localhost:8080/api/auth/refresh_token',
             null, {
               params: {
                 refresh_token: refreshToken.value,

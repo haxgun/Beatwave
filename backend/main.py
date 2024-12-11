@@ -11,7 +11,7 @@ app = FastAPI(
     docs_url="/",
 )
 
-app.include_router(api_router, prefix="")
+app.include_router(api_router, prefix="/api")
 
 app.add_middleware(
     CORSMiddleware,
