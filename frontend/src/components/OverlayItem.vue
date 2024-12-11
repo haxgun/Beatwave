@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import fakeAlbumArt from '@/assets/fakeAlbumArt.webp'
 import PreloadedImage from '@/components/PreloadedImage.vue'
+import SpotifyIcon from '@/components/icons/SpotifyIcon.vue'
 import axios from 'axios'
 import { computed, onMounted, ref } from 'vue'
-import SpotifyIcon from '@/components/icons/SpotifyIcon.vue'
 
 defineProps({
   showMaxWidth: {
@@ -35,15 +35,19 @@ defineProps({
     default: null
   }
 })
-const accessToken = ref(document.cookie
-  .split('; ')
-  .find((row) => row.startsWith('access_token='))
-  ?.split('=')[1])
+const accessToken = ref(
+  document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('access_token='))
+    ?.split('=')[1]
+)
 
-const refreshToken = ref(document.cookie
-  .split('; ')
-  .find((row) => row.startsWith('refresh_token='))
-  ?.split('=')[1])
+const refreshToken = ref(
+  document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('refresh_token='))
+    ?.split('=')[1]
+)
 
 const userPlayer = ref(null)
 const borderRadiusValues = [0, 12, 18, 24, 9999]
@@ -85,23 +89,27 @@ const loadUserPlayer = () => {
       setTimeout(loadUserPlayer, 1000)
     })
     .catch(async (error) => {
-      if ((error.response && error.response.status === 401) || (error.response && error.response.status === 400)) {
+      if (
+        (error.response && error.response.status === 401) ||
+        (error.response && error.response.status === 400)
+      ) {
         try {
           const refreshResponse = await axios.post(
             'http://localhost:8080/api/auth/refresh_token',
-            null, {
+            null,
+            {
               params: {
-                refresh_token: refreshToken.value,
-              },
+                refresh_token: refreshToken.value
+              }
             }
-          );
+          )
 
           accessToken.value = refreshResponse.data.access_token
-          document.cookie = `access_token=${accessToken.value}; path=/;`;
+          document.cookie = `access_token=${accessToken.value}; path=/;`
 
-          loadUserPlayer();
+          loadUserPlayer()
         } catch (refreshError) {
-          console.error('Error refreshing token:', refreshError);
+          console.error('Error refreshing token:', refreshError)
         }
       }
     })

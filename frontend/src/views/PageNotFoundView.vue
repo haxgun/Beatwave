@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="main">
@@ -7,10 +6,8 @@
       <div class="main__container">
         <div class="blick3"></div>
         <div class="main__container">
-          <h1 class="title">
-              Oops! It seems you've hit a wrong note.
-          </h1>
-<!--          <p class="subtitle">This page is missing or you wrote the link incorrectly.</p>-->
+          <h1 class="title">Oops! It seems you've hit a wrong note.</h1>
+          <!--          <p class="subtitle">This page is missing or you wrote the link incorrectly.</p>-->
         </div>
       </div>
     </div>

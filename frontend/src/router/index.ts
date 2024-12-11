@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 function hasAccessToken() {
-  const cookies = document.cookie.split(';').map(c => c.trim());
-  return cookies.some(cookie => cookie.startsWith('access_token='));
+  const cookies = document.cookie.split(';').map((c) => c.trim())
+  return cookies.some((cookie) => cookie.startsWith('access_token='))
 }
 
 const router = createRouter({
@@ -12,13 +12,13 @@ const router = createRouter({
       name: 'index',
       path: '/',
       component: () => import('@/views/IndexView.vue'),
-      beforeEnter: (to, from, next) => hasAccessToken() ? next({ name: 'settings' }) : next(),
+      beforeEnter: (to, from, next) => (hasAccessToken() ? next({ name: 'settings' }) : next())
     },
     {
       name: 'settings',
       path: '/settings',
       component: () => import('@/views/SettingsView.vue'),
-      beforeEnter: (to, from, next) => hasAccessToken() ? next() : next({ name: 'index' }),
+      beforeEnter: (to, from, next) => (hasAccessToken() ? next() : next({ name: 'index' }))
     },
     {
       name: 'overlay',
@@ -29,8 +29,8 @@ const router = createRouter({
     {
       path: '/:pathMatch(.*)*',
       component: () => import('@/views/PageNotFoundView.vue'),
-      meta: { hideHighlight: true },
-    },
+      meta: { hideHighlight: true }
+    }
   ]
 })
 

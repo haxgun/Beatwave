@@ -11,13 +11,7 @@ const borderSize = ref(3)
 const accessToken = ref(null)
 
 onMounted(() => {
-  const {
-    showMaxWidth: maxWidth,
-    showBorder,
-    trimArtist,
-    bgOpacity,
-    borderSize
-  } = useRoute().query
+  const { showMaxWidth: maxWidth, showBorder, trimArtist, bgOpacity, borderSize } = useRoute().query
 
   showMaxWidth.value = JSON.parse(maxWidth)
   showBorder.value = JSON.parse(showBorder)
