@@ -96,15 +96,11 @@ const loadUserPlayer = () => {
         (error.response && error.response.status === 400)
       ) {
         try {
-          const refreshResponse = await axios.post(
-            `${frontendUrl}/api/auth/refresh_token`,
-            null,
-            {
-              params: {
-                refresh_token: refreshToken.value
-              }
+          const refreshResponse = await axios.post(`${frontendUrl}/api/auth/refresh_token`, null, {
+            params: {
+              refresh_token: refreshToken.value
             }
-          )
+          })
 
           accessToken.value = refreshResponse.data.access_token
           document.cookie = `access_token=${accessToken.value}; path=/;`
