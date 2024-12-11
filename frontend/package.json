@@ -43,6 +43,7 @@
     "ant-design-vue": "~4.1.2",
     "axios": "^1.6.8",
     "copy-to-clipboard": "^3.3.3",
+    "dotenv": "^16.4.7",
     "eslint-config-prettier": "^9.1.0",
     "modern-normalize": "^3.0.1",
     "npm": "^10.5.0",

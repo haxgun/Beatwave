@@ -90,7 +90,7 @@ async def callback(request: Request, response: Response, session: AsyncSession =
             await session.commit()
             await session.refresh(new_user)
 
-            response = RedirectResponse(url="http://localhost:5173/settings")
+            response = RedirectResponse(url=f"{settings.FRONTEND_URL}/settings")
             response.set_cookie(key="access_token", value=access_token)
             response.set_cookie(key="refresh_token", value=refresh_token)
 

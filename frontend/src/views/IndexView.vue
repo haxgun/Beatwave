@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import MelodyIcon from '@/components/icons/MelodyIcon.vue'
 import SpotifyIcon from '@/components/icons/SpotifyIcon.vue'
+
+const frontendUrl = import.meta.env.APP_FRONTEND_URL
 </script>
 
 <template>
@@ -23,7 +25,7 @@ import SpotifyIcon from '@/components/icons/SpotifyIcon.vue'
             Spotify</span
           >
         </p>
-        <a href="http://localhost:5173/api/auth/login" class="btn">
+        <a :href="`${frontendUrl}/api/auth/login`" class="btn">
           <SpotifyIcon :size="24" :color="'#fff'" />
           Login with Spotify
         </a>

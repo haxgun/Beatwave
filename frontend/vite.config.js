@@ -6,6 +6,12 @@ import {fileURLToPath, URL} from "node:url";
 import autoprefixer from "autoprefixer";
 import Components from 'unplugin-vue-components/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+import dotenv from 'dotenv'
+import { resolve } from 'path'
+
+dotenv.config({ path: resolve(__dirname, '../.env') });
+
+const backendUrl = process.env.APP_BACKEND_URL;
 
 export default defineConfig({
   server: {
@@ -20,6 +26,7 @@ export default defineConfig({
   devServer: {
     port: 5000
   },
+  envPrefix: 'APP_',
   plugins: [
     vue(),
     vueJsx(),

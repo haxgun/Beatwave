@@ -5,6 +5,8 @@ import SpotifyIcon from '@/components/icons/SpotifyIcon.vue'
 import axios from 'axios'
 import { computed, onMounted, ref } from 'vue'
 
+const frontendUrl = import.meta.env.APP_FRONTEND_URL
+
 defineProps({
   showMaxWidth: {
     type: Boolean,
@@ -95,7 +97,7 @@ const loadUserPlayer = () => {
       ) {
         try {
           const refreshResponse = await axios.post(
-            `http://localhost:5173/api/auth/refresh_token`,
+            `${frontendUrl}/api/auth/refresh_token`,
             null,
             {
               params: {
