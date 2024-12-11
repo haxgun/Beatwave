@@ -89,8 +89,10 @@ const loadUserPlayer = () => {
         try {
           const refreshResponse = await axios.post(
             'http://localhost:8080/auth/refresh_token',
-            {
-              refresh_token: refreshToken.value
+            null, {
+              params: {
+                refresh_token: refreshToken.value,
+              },
             }
           );
 
