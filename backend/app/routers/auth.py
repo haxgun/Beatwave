@@ -100,7 +100,7 @@ async def callback(request: Request, response: Response, session: AsyncSession =
     await session.commit()
     await session.refresh(new_user)
 
-    response = RedirectResponse(url=f"{settings.FRONTEND_URL}/settings")
+    response = RedirectResponse(url=f"{settings.APP_FRONTEND_URL}/settings")
     response.set_cookie(
         key="access_token",
         value=access_token,
@@ -134,7 +134,7 @@ async def refresh_token_route(request: Request, refresh_token: str, session: Asy
     url = "https://accounts.spotify.com/api/token"
 
     try:
-        response = requests.post(url, data=form_data, headers=headers, timeout=10)
+        response = requests.post(url, data=form_data, headers=header, timeout=10)
         response.raise_for_status()
     except requests.exceptions.RequestException as e:
         raise HTTPException(status_code=400, detail=f"Error refreshing token: {str(e)}")
