@@ -36,7 +36,7 @@ class Settings(BaseSettings):
 
     @property
     def REDIRECT_URI(self) -> str:
-        return f"{self.APP_BACKEND_URL}/api/auth/twitch/callback"
+        return f"{self.APP_BACKEND_URL}/api/auth/callback"
 
     @property
     def DB_URL(self) -> str:
