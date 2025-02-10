@@ -8,7 +8,7 @@ from fastapi.responses import RedirectResponse
 from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from app import settings
+from app.settings import settings
 from app.db import get_session
 from app.models.users import User
 

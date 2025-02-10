@@ -11,6 +11,7 @@ fastapi = {extras = ["all"], version = "*"}
 sqlmodel = "*"
 asyncpg = "*"
 greenlet = "*"
+pydantic-settings = "*"
 
 [dev-packages]
 

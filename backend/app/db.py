@@ -5,10 +5,10 @@ from sqlalchemy.orm import sessionmaker
 from sqlmodel import SQLModel
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-from app.settings import DATABASE_URL
+from app.settings import database_url
 from app.models import users
 
-engine = create_async_engine(DATABASE_URL, echo=False)
+engine = create_async_engine(database_url, echo=False)
 
 
 async def init_db():

@@ -1,39 +1,47 @@
-from os import environ
 from pathlib import Path
-from dotenv import load_dotenv
+
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+BASE_DIR = Path(__file__).resolve().parents[2]
+ENV_FILE = BASE_DIR / ".env"
 
 
-def str_to_bool(value: str) -> bool:
-    return value.lower() in ("true", "1", "yes")
+class Settings(BaseSettings):
+    API_TITLE: str = "Milady API"
+    API_DESCRIPTION: str = "API for logging in to Spotify"
+    API_VERSION: str = "1.0.0"
 
-BASE_DIR: Path = Path(__file__).resolve().parent.parent.parent
+    APP_FRONTEND_URL: str
+    APP_BACKEND_URL: str
+    APP_CALLBACK_URL: str
 
-dotenv_file: Path = BASE_DIR / ".env"
-if dotenv_file.is_file():
-    load_dotenv(dotenv_file)
+    SPOTIFY_CLIENT_ID: str
+    SPOTIFY_CLIENT_SECRET: str
 
-# API settings
-API_TITLE = environ.get("API_TITLE", "Milady API")
-API_DESCRIPTION = environ.get("API_DESCRIPTION", "API for logging in to Spotify")
-API_VERSION = environ.get("API_VERSION", "1.0.0")
+    DATABASE_LOGIN: str = "user"
+    DATABASE_PASSWORD: str = "password"
+    DATABASE_NAME: str = "database"
+    DATABASE_IP: str = "localhost"
+    DATABASE_PORT: int = 5432
 
-# URL settings
-FRONTEND_URL = environ.get("APP_FRONTEND_URL")
-BACKEND_URL = environ.get("APP_BACKEND_URL")
-CALLBACK_URL = environ.get("CALLBACK_URL")
-REDIRECT_URI = BACKEND_URL + CALLBACK_URL
+    model_config = SettingsConfigDict(env_file=ENV_FILE)
 
-# Spotify settings
-SPOTIFY_CLIENT_ID = environ.get("SPOTIFY_CLIENT_ID")
-SPOTIFY_CLIENT_SECRET = environ.get("SPOTIFY_CLIENT_SECRET")
-SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize"
-SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
+    @property
+    def SPOTIFY_AUTH_URL(self) -> str:
+        return "https://accounts.spotify.com/authorize"
 
-# Database settings
-DATABASE_LOGIN: str = environ.get("DATABASE_LOGIN")
-DATABASE_PASSWORD: str = environ.get("DATABASE_PASSWORD")
-DATABASE_NAME: str = environ.get("DATABASE_NAME")
-DATABASE_IP: str = environ.get("DATABASE_IP", "localhost")
-DATABASE_PORT: int = int(environ.get("DATABASE_PORT", 5432))
+    @property
+    def SPOTIFY_TOKEN_URL(self) -> str:
+        return "https://accounts.spotify.com/api/token"
 
-DATABASE_URL: str = f"postgresql+asyncpg://{DATABASE_LOGIN}:{DATABASE_PASSWORD}@{DATABASE_IP}:{DATABASE_PORT}/{DATABASE_NAME}"
+    @property
+    def REDIRECT_URI(self) -> str:
+        return f"{self.APP_BACKEND_URL}/api/auth/twitch/callback"
+
+    @property
+    def DB_URL(self) -> str:
+        return f"postgresql+asyncpg://{self.DATABASE_LOGIN}:{self.DATABASE_PASSWORD}@{self.DATABASE_IP}:{self.DATABASE_PORT}/{self.DATABASE_NAME}"
+
+
+settings = Settings()
+database_url = settings.DB_URL
