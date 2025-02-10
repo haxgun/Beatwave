@@ -1,9 +1,7 @@
 > [!WARNING]  
 > The project is under development
 
-<a href="https://song.haxgun.ru/">
-  <img align="right" width="100" height="120" src="https://song.haxgun.ru/logo.svg">
-</a>
+<img align="right" width="100" height="120" src="/frontend/public/logo.svg">
 
 # Milady
 
