@@ -45,8 +45,8 @@ async def login():
         key=STATE_KEY,
         value=state,
         httponly=True,
-        secure=True,
-        samesite="strict",
+        secure=False,
+        samesite="lax",
     )
     return response
 
@@ -60,8 +60,9 @@ async def callback(request: Request, response: Response, session: AsyncSession =
     """
     if len(request.query_params.values()) == 0:
         raise HTTPException(status_code=400, detail="Not query parameters received")
-    code = request.query_params["code"]
-    state = request.query_params["state"]
+
+    code = request.query_params.get("code", None)
+    state = request.query_params.get("state", None)
     stored_state = request.cookies.get(STATE_KEY)
 
     if not code or not state or state != stored_state:
