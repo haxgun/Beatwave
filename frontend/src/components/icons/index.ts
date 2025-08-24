@@ -1,0 +1,7 @@
+export { default as DiscordIcon } from './socials/Discord.vue'
+export { default as GithubIcon } from './socials/Github.vue'
+export { default as KickIcon } from './socials/Kick.vue'
+export { default as SpotifyIcon } from './socials/Spotify.vue'
+export { default as TwitchIcon } from './socials/Twitch.vue'
+export { default as YoutubeIcon } from './socials/YouTube.vue'
+export { default as TwitchVerify } from './TwitchVerify.vue'
