@@ -1,14 +1,6 @@
 > [!WARNING]
 > The project is under development
 
-<a href="https://valory.su" target="_blank">
-    <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="/frontend/public/logo_dark.svg">
-        <source media="(prefers-color-scheme: light)" srcset="/frontend/public/logo.svg">
-        <img alt="Valory" src="/frontend/public/logo.svg" width="100" height="100" style="max-width: 100%;">
-    </picture>
-</a>
-
 # Beatwave
 
 [![GitHub License](https://img.shields.io/github/license/haxgun/Beatwave)](https://github.com/haxgun/Beatwave/blob/main/LICENSE)
