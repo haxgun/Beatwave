@@ -4,6 +4,10 @@ export interface DefaultOverlay {
   coverUrl?: string
   textColor?: string
   backgroundColor?: string
-  borderRadius?: number
+  avgCoverColor?: boolean
   showBorder?: boolean
+  borderColor?: string
+  borderRadius?: number
+  textFont?: string
+  trimArtist?: boolean
 }

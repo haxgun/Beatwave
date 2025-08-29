@@ -1,0 +1,81 @@
+{
+  "default-layout": {
+    "header": {
+      "connect": "Connect"
+    },
+    "footer": {
+      "description": "Real-time music widgets that match your style and show what's currently playing",
+      "copyright": "All rights reserved "
+    }
+  },
+  "dashboard-layout": {
+    "header": {
+      "links": {
+        "dashboard": "Dashboard"
+      }
+    },
+    "footer": {
+      "description": "Real-time music widgets that match your style and show what's currently playing",
+      "copyright": "All rights reserved "
+    }
+  },
+  "home-page": {
+    "hero": {
+      "title": "Share Your Music Taste",
+      "description": "Elegant, customizable widgets that broadcast\nyour tracks in real time — matching your style,\nand letting viewers see what’s playing right now",
+      "buttons": {
+        "start": "Get started now",
+        "features": "Discover features"
+      }
+    }
+  },
+  "dashboard-page": {
+    "configuration": {
+      "title": "Configuration",
+      "description": "Customize the appearance of the music display. Customize everything to your liking.",
+      "blocks": {
+        "background": {
+          "title": "Background",
+          "features": {
+            "color": "Color",
+            "avg-cover-color": "Average Cover Color",
+            "opacity": "Opacity",
+            "width-limitation": "Width Limitation"
+          }
+        },
+        "border": {
+          "title": "Border",
+          "features": {
+            "color": "Color",
+            "show": "Show",
+            "radius": "Radius"
+          }
+        },
+        "text": {
+          "title": "Text",
+          "features": {
+            "color": "Color",
+            "font": "Font"
+          }
+        },
+        "other": {
+          "title": "Other",
+          "features": {
+            "trim-artist": "Trim artist"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "languageSwitcher": "Select language",
+    "profileMenu": {
+      "buttons": {
+        "settings": "Settings",
+        "support": "Support",
+        "terms": "Terms of Service",
+        "logout": "Logout"
+      }
+    }
+  }
+}

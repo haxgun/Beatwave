@@ -17,7 +17,7 @@ export const buttonVariants = cva(
         secondary: 'bg-[#1D1D1D] text-white border border-white/15 hover:bg-[#1D1D1D]/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
         link: 'text-primary underline-offset-4 hover:underline',
-        profile: 'hover:bg-white/5 active:scale-100 p-2',
+        profile: 'active:scale-100 p-2',
       },
       size: {
         default: 'h-9 px-5 py-2.5 has-[>svg]:pl-5 has-[>svg]:pr-3.5',

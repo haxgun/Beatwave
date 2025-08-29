@@ -1,0 +1,7 @@
+export { default as Discord } from './Discord.vue'
+export { default as Github } from './Github.vue'
+export { default as Kick } from './Kick.vue'
+export { default as Spotify } from './Spotify.vue'
+export { default as Telegram } from './Telegram.vue'
+export { default as Twitch } from './Twitch.vue'
+export { default as YouTube } from './YouTube.vue'

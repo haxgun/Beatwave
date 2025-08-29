@@ -1,23 +1,39 @@
 <script setup lang="ts">
-// import Silk from '@/components/ui/Silk.vue';
 import Configuration from '@/components/dashboard-page/Configuration.vue'
 import DefaultOverlay from '@/components/overlays/DefaultOverlay.vue'
 import DashboardLayout from '@/layouts/DashboardLayout.vue'
+
+import { useOverlayStore } from '@/stores'
+import { storeToRefs } from 'pinia'
+
+const overlayStore = useOverlayStore()
+const {
+  bgColor,
+  avgCoverColor,
+  textColor,
+  widthLimitation,
+  showBorder,
+  borderColor,
+  borderRadius,
+  textFont,
+  trimArtist,
+} = storeToRefs(overlayStore)
 </script>
 
 <template>
   <DashboardLayout>
     <div class="inline-flex size-full">
       <div class="flex-1 h-full flex items-center justify-center relative overflow-hidden">
-        <DefaultOverlay />
-        <!--      <Silk-->
-        <!--        :speed="5"-->
-        <!--        :scale="1"-->
-        <!--        :color="'#7B7481'"-->
-        <!--        :noise-intensity="1.5"-->
-        <!--        :rotation="0"-->
-        <!--        class="w-full h-full -z-10"-->
-        <!--      />-->
+        <DefaultOverlay
+          :backgroundColor="bgColor"
+          :avgCoverColor="avgCoverColor"
+          :showBorder="showBorder"
+          :borderColor="borderColor"
+          :borderRadius="borderRadius"
+          :textColor="textColor"
+          :textFont="textFont"
+          :trimArtist="trimArtist"
+        />
       </div>
       <Configuration />
     </div>

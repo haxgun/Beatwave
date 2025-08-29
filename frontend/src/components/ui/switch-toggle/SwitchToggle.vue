@@ -1,8 +1,4 @@
 <script lang="ts" setup>
-const modelValue = defineModel<boolean>({
-  default: false,
-})
-
 const props = withDefaults(
   defineProps<{
     disabled?: boolean
@@ -14,7 +10,11 @@ const props = withDefaults(
   },
 )
 
-const updateValue = () => {
+const modelValue = defineModel<boolean>({
+  default: false,
+})
+
+function updateValue() {
   if (!props.disabled) {
     modelValue.value = !modelValue.value
   }
@@ -23,20 +23,19 @@ const updateValue = () => {
 
 <template>
   <button
-    type="button"
     :id="id"
+    type="button"
     :aria-checked="modelValue"
-    class="inline-flex h-8 cursor-pointer min-w-24 items-center justify-between rounded-md border border-white/10 p-1 font-mono text-sm transition-all duration-200 hover:border-white/15 hover:bg-white/5"
+    class="inline-flex h-8 cursor-pointer min-w-24 items-center justify-between rounded-md border border-white/10 p-[3px] text-xs transition-all duration-200 hover:border-white/15 hover:bg-white/5"
     :disabled="disabled"
-    @click="updateValue"
     :style="{ opacity: disabled ? '0.5' : '1' }"
+    @click="updateValue"
   >
     <span
       class="flex h-full w-1/2 flex-col items-center justify-center rounded transition-colors"
       :class="{
-        'bg-switch-checked text-switch-checked-foreground shadow-inner drop-shadow-[0_0_10px_#ffffff4f]':
-          modelValue,
-        'text-switch-foreground': !modelValue,
+        'bg-[#eeeeee] text-[#000000]': modelValue,
+        'text-[#eeeeee4d]': !modelValue,
       }"
     >
       ON
@@ -44,9 +43,8 @@ const updateValue = () => {
     <span
       class="flex h-full w-1/2 flex-col items-center justify-center rounded transition-colors"
       :class="{
-        'bg-switch-checked text-switch-checked-foreground shadow-inner drop-shadow-[0_0_10px_#ffffff4f]':
-          !modelValue,
-        'text-switch-foreground': modelValue,
+        'bg-[#eeeeee] text-[#000000]': !modelValue,
+        'text-[#eeeeee4d]': modelValue,
       }"
     >
       OFF

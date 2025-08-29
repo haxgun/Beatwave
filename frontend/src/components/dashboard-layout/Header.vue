@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { Logotype } from '@/components'
 import { ProfileMenu } from '@/components/dashboard-layout/profile-menu'
+import { LanguageSwitcher, ThemeSwitcher } from '@/components/ui'
 import { cn } from '@/lib/utils'
+import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const links = [
-  { label: 'Dashboard', to: '/dashboard', active: true },
-  { label: 'Settings', to: '/settings', active: false },
-  { label: 'Logout', to: '/logout', active: false },
-]
+const links = [{ label: 'dashboard-layout.header.links.dashboard', to: '/dashboard', active: true }]
+const { t } = useI18n()
 </script>
 
 <template>
@@ -32,10 +31,17 @@ const links = [
             )
           "
         >
-          {{ link.label }}
+          {{ t(link.label) }}
         </span>
       </div>
     </div>
-    <ProfileMenu />
+    <div class="inline-flex gap-3">
+      <div class="inline-flex gap-px">
+        <LanguageSwitcher />
+        <ThemeSwitcher />
+      </div>
+
+      <ProfileMenu />
+    </div>
   </div>
 </template>

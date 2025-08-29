@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { cn } from '@/lib/utils'
 import { Mesh, Program, Renderer, Triangle, Vec2 } from 'ogl'
-import { onMounted, onUnmounted, useTemplateRef, watch } from 'vue'
+import type { PrimitiveProps } from 'reka-ui'
+import { Primitive } from 'reka-ui'
+import { onMounted, onUnmounted, useTemplateRef, watch, type HTMLAttributes } from 'vue'
 
-interface DarkVeilProps {
+interface Props extends PrimitiveProps {
   hueShift?: number
   noiseIntensity?: number
   scanlineIntensity?: number
@@ -10,9 +13,10 @@ interface DarkVeilProps {
   scanlineFrequency?: number
   warpAmount?: number
   resolutionScale?: number
+  class?: HTMLAttributes['class']
 }
 
-const props = withDefaults(defineProps<DarkVeilProps>(), {
+const props = withDefaults(defineProps<Props>(), {
   hueShift: 0,
   noiseIntensity: 0,
   scanlineIntensity: 0,
@@ -20,6 +24,7 @@ const props = withDefaults(defineProps<DarkVeilProps>(), {
   scanlineFrequency: 0,
   warpAmount: 0,
   resolutionScale: 1,
+  as: 'div',
 })
 
 const canvasRef = useTemplateRef<HTMLCanvasElement>('canvasRef')
@@ -199,8 +204,8 @@ watch(
 </script>
 
 <template>
-  <div class="relative w-full h-full">
+  <Primitive :as="props.as" :as-child="props.asChild" :class="cn(props.class)">
     <slot />
-    <canvas ref="canvasRef" class="w-full h-full block" />
-  </div>
+    <canvas ref="canvasRef" />
+  </Primitive>
 </template>

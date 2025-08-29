@@ -8,13 +8,16 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomePage,
-      meta: { showInHeader: true },
+      meta: {
+        showInHeader: false,
+        showInFooter: false,
+      },
     },
     {
       path: '/help',
       name: 'help',
       redirect: { name: 'home' },
-      meta: { showInHeader: true },
+      meta: { showInHeader: false, showInFooter: false },
     },
     {
       path: '/auth',

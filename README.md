@@ -1,7 +1,7 @@
 > [!WARNING]
 > The project is under development
 
-# Beatwave
+# 🌊 Beatwave
 
 [![GitHub License](https://img.shields.io/github/license/haxgun/Beatwave)](https://github.com/haxgun/Beatwave/blob/main/LICENSE)
 [![Website](https://img.shields.io/website?url=https://song.haxgun.ru/)](https://song.haxgun.ru/)

@@ -11,10 +11,9 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 
-import { TwitchVerify } from '@/components/icons'
-
 import { openLink } from '@/lib/utils.ts'
-import { LifeBuoy, NotebookText, Settings as SettingsIcon } from 'lucide-vue-next'
+import { LifeBuoyIcon, LogOutIcon, NotebookTextIcon, SettingsIcon } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
 
 import { UserAvatar, UserBio } from '@/components/dashboard-layout/profile-menu'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -23,6 +22,8 @@ import { useAuthStore, useUserStore } from '@/stores'
 import { storeToRefs } from 'pinia'
 
 const authStore = useAuthStore()
+
+const { t } = useI18n()
 
 const userStore = useUserStore()
 const { user, loading, error } = storeToRefs(userStore)
@@ -53,38 +54,42 @@ const { user, loading, error } = storeToRefs(userStore)
       Error
     </div>
     <DropdownMenuTrigger v-else-if="user && !loading && !error" as-child>
-      <Button variant="profile" size="none" class="p-0 inline-flex items-center gap-2 relative">
-        <UserAvatar :avatar_url="user.avatar_url" :username="user.username" />
-        <TwitchVerify
-          class="size-4 absolute -right-1 -top-1"
-          v-if="user.broadcaster_type === 'partner'"
-        />
+      <Button
+        variant="profile"
+        size="none"
+        class="p-0 size-fit items-center gap-2 relative hover:shadow-[0_0_0_2px_#242424]"
+      >
+        <UserAvatar :avatar_url="user?.avatar_url" :username="user?.username" />
       </Button>
     </DropdownMenuTrigger>
-    <DropdownMenuContent align="start" class="w-56 mb-1">
-      <DropdownMenuLabel class="flex items-center justify-start gap-2" v-if="user">
+    <DropdownMenuContent align="end" class="w-56 mb-1">
+      <DropdownMenuLabel class="flex items-center justify-start gap-2">
         <UserBio
-          :avatar_url="user.avatar_url"
-          :username="user.username"
-          :twitch_display_name="user.twitch_display_name"
-          :partner="user.broadcaster_type === 'partner'"
+          :avatar_url="user?.avatar_url"
+          :username="user?.username"
+          :twitch_display_name="user?.twitch_display_name"
         />
       </DropdownMenuLabel>
       <DropdownMenuSeparator />
       <DropdownMenuGroup>
         <DropdownMenuItem @click="router.push({ name: 'configurator-settings' })">
           <SettingsIcon class="mr-1 size-4" />
-          <span>Settings</span>
+          <span>{{ t('components.profileMenu.buttons.settings') }} </span>
         </DropdownMenuItem>
       </DropdownMenuGroup>
       <DropdownMenuSeparator />
       <DropdownMenuItem @click="openLink('https://discord.gg/pYV4PBV5YW')">
-        <LifeBuoy class="mr-1 size-4" />
-        <span>Support</span>
+        <LifeBuoyIcon class="mr-1 size-4" />
+        <span>{{ t('components.profileMenu.buttons.support') }}</span>
       </DropdownMenuItem>
       <DropdownMenuItem @click="router.push({ name: 'terms' })">
-        <NotebookText class="text-muted-foreground mr-1 size-4" />
-        <span>Terms of Service</span>
+        <NotebookTextIcon class="text-muted-foreground mr-1 size-4" />
+        <span>{{ t('components.profileMenu.buttons.terms') }}</span>
+      </DropdownMenuItem>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem>
+        <LogOutIcon class="text-muted-foreground mr-1 size-4" />
+        <span>{{ t('components.profileMenu.buttons.logout') }}</span>
       </DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>

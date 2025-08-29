@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { cn } from '@/lib/utils'
 import { type DefaultOverlay } from '@/types/overlays.ts'
 
 const props = withDefaults(defineProps<DefaultOverlay>(), {
@@ -6,13 +7,30 @@ const props = withDefaults(defineProps<DefaultOverlay>(), {
   artist: 'Artist',
   coverUrl: 'https://www.indieground.net/images/blog/2024/indieblog-best-album-covers-2010s-07.jpg',
   textColor: '#ffffff',
-  backgroundColor: 'rgba(0, 0, 0, 0.8)',
+  backgroundColor: '#000000',
+  avgCoverColor: false,
+  showBorder: true,
+  borderColor: '#000000',
+  borderRadius: 0,
+  textFont: 'Geist',
+  trimArtist: true,
 })
 </script>
 
 <template>
   <div
-    class="default-overlay smooth-corners-lg bg-cover rounded-lg p-3 w-36 inline-flex gap-2 items-center"
+    :class="
+      cn(
+        'default-overlay smooth-corners-lg bg-cover rounded-lg p-3 w-36 inline-flex gap-2 items-center',
+        showBorder ? 'border-2' : '',
+      )
+    "
+    :style="{
+      fontFamily: props.textFont,
+      backgroundColor: `${props.backgroundColor}CC`,
+      color: props.textColor,
+      borderColor: `${props.borderColor}80`,
+    }"
   >
     <div
       :style="{ backgroundImage: `url(${props.coverUrl})` }"
@@ -26,7 +44,7 @@ const props = withDefaults(defineProps<DefaultOverlay>(), {
 </template>
 
 <style scoped>
-.default-overlay {
+/*.default-overlay {
   background-color: v-bind('props.backgroundColor');
-}
+}*/
 </style>

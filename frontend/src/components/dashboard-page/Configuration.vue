@@ -2,97 +2,116 @@
 import { ColorPicker, SelectFont } from '@/components/ui/'
 import { Slider } from '@/components/ui/slider'
 import { SwitchToggle } from '@/components/ui/switch-toggle'
-import { ref } from 'vue'
 
-const bgColor = ref('#ffffff')
-const avgCoverColor = ref(false)
-const textColor = ref('#ffffff')
-const widthLimitation = ref(false)
-const showBorder = ref(false)
-const borderColor = ref('#ffffff')
-const textFont = ref('Geist')
-const trimArtist = ref(false)
+import { useOverlayStore } from '@/stores'
+import { storeToRefs } from 'pinia'
+import { useI18n } from 'vue-i18n'
 
-const toggleWidthLimitation = () => {
-  widthLimitation.value = !widthLimitation.value
-}
+const overlayStore = useOverlayStore()
+const {
+  bgColor,
+  avgCoverColor,
+  textColor,
+  widthLimitation,
+  showBorder,
+  borderColor,
+  textFont,
+  trimArtist,
+} = storeToRefs(overlayStore)
 
-const toggleShowBorder = () => {
-  showBorder.value = !showBorder.value
-}
-
-const toggleTrimArtist = () => {
-  trimArtist.value = !trimArtist.value
-}
-const toggleAvgCoverColor = () => {
-  avgCoverColor.value = !avgCoverColor.value
-}
+const { t } = useI18n()
 </script>
 
 <template>
   <div class="w-[360px] h-full bg-black/95 backdrop-blur-lg border-l border-white/10 p-6">
     <div class="flex flex-col gap-5">
       <div class="flex flex-col gap-1">
-        <span class="text-lg font-medium">Configuration</span>
+        <span class="text-md font-medium">{{ t('dashboard-page.configuration.title') }}</span>
         <span class="text-sm text-neutral-600">
-          Customize the appearance of the music display. Customize everything to your liking.
+          {{ t('dashboard-page.configuration.description') }}
         </span>
       </div>
       <div class="flex flex-col gap-2">
-        <span class="text-xs uppercase text-neutral-700 font-medium font-mono">Background</span>
+        <span class="text-xs uppercase text-neutral-700 font-medium">
+          {{ t('dashboard-page.configuration.blocks.background.title') }}
+        </span>
         <div class="inline-flex items-center justify-between w-full">
-          <span class="text-sm w-1/2">Color</span>
+          <span class="text-sm w-1/2">
+            {{ t('dashboard-page.configuration.blocks.background.features.color') }}
+          </span>
           <ColorPicker v-model="bgColor" />
         </div>
         <div class="inline-flex items-center justify-between w-full">
-          <span class="text-sm w-1/2"
-            >Avg cover color {{ avgCoverColor ? 'enabled' : 'disabled' }}</span
-          >
+          <span class="text-sm w-1/2">
+            {{ t('dashboard-page.configuration.blocks.background.features.avg-cover-color') }}
+          </span>
           <SwitchToggle v-model="avgCoverColor" />
         </div>
         <div class="inline-flex items-center justify-between w-full">
-          <span class="text-sm w-1/2">Opacity</span>
+          <span class="text-sm w-1/2">
+            {{ t('dashboard-page.configuration.blocks.background.features.opacity') }}
+          </span>
           <Slider :default-value="[100]" :max="100" :step="1" />
         </div>
         <div class="inline-flex items-center justify-between w-full">
-          <span class="text-sm w-1/2">Width limitation</span>
-          <SwitchToggle :checked="widthLimitation" @update:checked="toggleWidthLimitation" />
+          <span class="text-sm w-1/2">
+            {{ t('dashboard-page.configuration.blocks.background.features.width-limitation') }}
+          </span>
+          <SwitchToggle v-model="widthLimitation" />
         </div>
       </div>
 
       <div class="flex flex-col gap-2">
-        <span class="text-xs uppercase text-neutral-700 font-medium font-mono">Border</span>
+        <span class="text-xs uppercase text-neutral-700 font-medium">
+          {{ t('dashboard-page.configuration.blocks.border.title') }}
+        </span>
         <div class="inline-flex items-center justify-between w-full">
-          <span class="text-sm w-1/2">Color</span>
+          <span class="text-sm w-1/2">
+            {{ t('dashboard-page.configuration.blocks.border.features.color') }}
+          </span>
           <ColorPicker v-model="borderColor" />
         </div>
         <div class="inline-flex items-center justify-between w-full">
-          <span class="text-sm w-1/2">Show</span>
-          <SwitchToggle :checked="showBorder" @update:checked="toggleShowBorder" />
+          <span class="text-sm w-1/2">
+            {{ t('dashboard-page.configuration.blocks.border.features.show') }}
+          </span>
+          <SwitchToggle v-model="showBorder" />
         </div>
         <div class="inline-flex items-center justify-between w-full">
-          <span class="text-sm w-1/2">Radius</span>
+          <span class="text-sm w-1/2">
+            {{ t('dashboard-page.configuration.blocks.border.features.radius') }}
+          </span>
           <Slider :default-value="[100]" :max="3" :step="1" />
         </div>
       </div>
 
       <div class="flex flex-col gap-2">
-        <span class="text-xs uppercase text-neutral-700 font-medium font-mono">Text</span>
+        <span class="text-xs uppercase text-neutral-700 font-medium">
+          {{ t('dashboard-page.configuration.blocks.text.title') }}
+        </span>
         <div class="inline-flex items-center justify-between w-full">
-          <span class="text-sm w-1/2">Color</span>
+          <span class="text-sm w-1/2">
+            {{ t('dashboard-page.configuration.blocks.text.features.color') }}
+          </span>
           <ColorPicker v-model="textColor" />
         </div>
         <div class="inline-flex items-center justify-between w-full">
-          <span class="text-sm w-1/2">Font</span>
+          <span class="text-sm w-1/2">
+            {{ t('dashboard-page.configuration.blocks.text.features.font') }}
+          </span>
           <SelectFont v-model="textFont" />
         </div>
       </div>
 
       <div class="flex flex-col gap-2">
-        <span class="text-xs uppercase text-neutral-700 font-medium font-mono">Other</span>
+        <span class="text-xs uppercase text-neutral-700 font-medium">
+          {{ t('dashboard-page.configuration.blocks.other.title') }}
+        </span>
         <div class="inline-flex items-center justify-between w-full">
-          <span class="text-sm w-1/2">Trim artist</span>
-          <SwitchToggle :checked="trimArtist" @update:checked="toggleTrimArtist" />
+          <span class="text-sm w-1/2">
+            {{ t('dashboard-page.configuration.blocks.other.features.trim-artist') }}
+          </span>
+          <SwitchToggle v-model="trimArtist" />
         </div>
       </div>
     </div>
