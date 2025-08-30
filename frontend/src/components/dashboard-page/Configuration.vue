@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ColorPicker, SelectFont } from '@/components/ui/'
+import { ColorPicker, SelectFont } from '@/components/ui'
 import { Slider } from '@/components/ui/slider'
 import { SwitchToggle } from '@/components/ui/switch-toggle'
 
