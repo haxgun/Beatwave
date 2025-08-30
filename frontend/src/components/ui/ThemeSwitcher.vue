@@ -23,7 +23,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <Button @click="themeStore.toggleTheme" size="icon" variant="ghost" :aria-label="getThemeLabel()">
+  <Button
+    @click="themeStore.toggleTheme"
+    size="icon"
+    variant="ghost"
+    class="h-fit w-fit cursor-pointer p-2"
+    :aria-label="getThemeLabel()"
+  >
     <Transition mode="out-in">
       <SunIcon v-if="themeStore.currentTheme === 'light'" class="size-4" />
       <MoonIcon v-else-if="themeStore.currentTheme === 'dark'" class="size-4" />

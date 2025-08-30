@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Logotype } from '@/components'
+import { LanguageSwitcher } from '@/components/ui'
 import { Button } from '@/components/ui/button'
 import { SocialLinksData } from '@/data'
 import { computed } from 'vue'
@@ -39,6 +40,7 @@ const visibleRoutes = computed(() => {
         >
           <component :is="social.icon" :size="20" />
         </Button>
+        <LanguageSwitcher />
       </div>
 
       <RouterLink

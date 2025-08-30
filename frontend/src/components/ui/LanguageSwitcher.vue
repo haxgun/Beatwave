@@ -45,9 +45,9 @@ const currentLanguageName = computed(() => {
       <Button
         v-if="props.variant === 'default'"
         variant="ghost"
-        size="sm"
+        size="icon"
         aria-label="Language Switcher"
-        class="gap-2"
+        class="h-fit w-fit cursor-pointer p-2"
       >
         <LanguagesIcon class="size-4" />
       </Button>
