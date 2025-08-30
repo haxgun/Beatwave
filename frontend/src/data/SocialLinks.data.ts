@@ -7,7 +7,7 @@ interface SocialLinks {
   showInHeader: boolean
 }
 
-export const SocialLinksData: SocialLinks = [
+export const SocialLinksData: SocialLinks[] = [
   {
     name: 'Discord',
     url: 'https://discord.gg/pYV4PBV5YW',

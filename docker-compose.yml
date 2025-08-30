@@ -1,0 +1,16 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: 1.5G
+        reservations:
+          cpus: "0.3"
+          memory: 512M
+    restart: unless-stopped

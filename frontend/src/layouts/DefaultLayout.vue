@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { Footer, Header } from '@/components/default-layout'
+import { Footer, Header2 } from '@/components/default-layout'
 </script>
 
 <template>
   <div class="w-full flex flex-col">
-    <Header />
+    <Header2 />
     <slot />
     <Footer />
   </div>

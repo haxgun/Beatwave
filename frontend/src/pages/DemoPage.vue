@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AnimatedGradientBackground from '@/components/ui/AnimatedGradientBackground.vue'
+import { AnimatedGradientBackground } from '@/components/ui/background'
 </script>
 
 <template>

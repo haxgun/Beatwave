@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { DarkVeil } from '@/components/ui/background'
 import { Button } from '@/components/ui/button'
+import { moveTo } from '@/lib/utils'
 import { ArrowRight } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 
@@ -36,12 +37,7 @@ const { t } = useI18n()
           <Button @click="router.push({ name: 'auth' })" class="text-md" size="lg">
             {{ t('home-page.hero.buttons.start') }}
           </Button>
-          <Button
-            @click="router.push({ name: 'auth' })"
-            class="text-md"
-            size="lg"
-            variant="secondary"
-          >
+          <Button @click="moveTo('features')" class="text-md" size="lg" variant="secondary">
             {{ t('home-page.hero.buttons.features') }}
             <ArrowRight class="size-4" />
           </Button>
