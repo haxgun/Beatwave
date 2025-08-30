@@ -1,16 +1,14 @@
-> [!WARNING]  
+> [!WARNING]
 > The project is under development
 
-<img align="right" width="100" height="120" src="/frontend/public/logo.svg">
+# 🌊 Beatwave
 
-# Milady
-
-[![GitHub License](https://img.shields.io/github/license/haxgun/Milady)](https://github.com/haxgun/Milady/blob/main/LICENSE)
+[![GitHub License](https://img.shields.io/github/license/haxgun/Beatwave)](https://github.com/haxgun/Beatwave/blob/main/LICENSE)
 [![Website](https://img.shields.io/website?url=https://song.haxgun.ru/)](https://song.haxgun.ru/)
-[![Stars](https://img.shields.io/github/stars/haxgun/Milady)](https://github.com/haxgun/Milady/stargazers)
+[![Stars](https://img.shields.io/github/stars/haxgun/Beatwave)](https://github.com/haxgun/Beatwave/stargazers)
 
-The ultimate accessory for your Stream.  
-<br>Milady displays the current track, artist, and album cover from Spotify on your stream.
+The ultimate accessory for your Stream.
+<br>Beatwave displays the current track, artist, and album cover from Spotify on your stream.
 
 ## 🎶 Features
 
@@ -20,7 +18,7 @@ The ultimate accessory for your Stream.
 
 ## 📜 License
 
-**Melody** is licensed under the **[MIT License](https://github.com/haxgun/valory/blob/main/LICENSE)**:
+**Beatwave** is licensed under the **[MIT License](https://github.com/haxgun/Beatwave/blob/main/LICENSE)**:
 
 * **Freedom:** Use, modify, and distribute freely.
 * **Flexibility:** Adjust the code to suit your needs.
