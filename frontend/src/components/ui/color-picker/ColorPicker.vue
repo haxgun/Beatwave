@@ -30,12 +30,14 @@ interface Props {
   class?: HTMLAttributes['class']
   showPresets?: boolean
   showPipette?: boolean
+  outputFormat?: 'hex' | 'rgb' | 'hsl' | 'auto' // Добавляем возможность задать формат вывода
 }
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: 'rgba(255, 255, 255, 1)',
   showPresets: true,
   showPipette: true,
+  outputFormat: 'auto', // По умолчанию автоматически определяем формат
 })
 
 const emit = defineEmits<{
@@ -50,6 +52,9 @@ const rgb = reactive<RGB>({ r: 255, g: 255, b: 255 })
 const rgba = reactive<RGBA>({ r: 255, g: 255, b: 255, a: 1 })
 const hex = ref<string>('#ffffff')
 
+// Добавляем состояние для отслеживания выбранного формата в ColorPickerInputs
+const selectedColorModel = ref<'hex' | 'rgb' | 'hsl'>('hex')
+
 function updateColor(): void {
   const color = tinycolor({ h: hue.value, s: saturation.value, v: brightness.value })
   const { r, g, b } = color.toRgb()
@@ -57,16 +62,43 @@ function updateColor(): void {
   rgb.r = r
   rgb.g = g
   rgb.b = b
-
   rgba.r = r
   rgba.g = g
   rgba.b = b
   rgba.a = alpha.value / 100
-
   hex.value = color.toHexString()
 
-  const rgbaString = `rgba(${r}, ${g}, ${b}, ${rgba.a})`
-  emit('update:modelValue', rgbaString)
+  // Формируем вывод в зависимости от выбранного формата или настройки
+  const outputColor = getOutputColor(color)
+  emit('update:modelValue', outputColor)
+}
+
+function getOutputColor(color: tinycolor.Instance): string {
+  const colorWithAlpha = color.setAlpha(alpha.value / 100)
+
+  // Если задан конкретный формат вывода, используем его
+  if (props.outputFormat !== 'auto') {
+    switch (props.outputFormat) {
+      case 'hex':
+        return alpha.value < 100 ? colorWithAlpha.toRgbString() : colorWithAlpha.toHexString()
+      case 'rgb':
+        return colorWithAlpha.toRgbString()
+      case 'hsl':
+        return colorWithAlpha.toHslString()
+    }
+  }
+
+  // Иначе используем формат, выбранный пользователем в ColorPickerInputs
+  switch (selectedColorModel.value) {
+    case 'hex':
+      return alpha.value < 100 ? colorWithAlpha.toRgbString() : colorWithAlpha.toHexString()
+    case 'rgb':
+      return colorWithAlpha.toRgbString()
+    case 'hsl':
+      return colorWithAlpha.toHslString()
+    default:
+      return colorWithAlpha.toRgbString()
+  }
 }
 
 function updateFromHSV(h: number, s: number, v: number): void {
@@ -97,15 +129,6 @@ function updateColorFromRGB(): void {
   }
 }
 
-function updateColorFromRGBA(): void {
-  const color = tinycolor({ r: rgba.r, g: rgba.g, b: rgba.b, a: rgba.a })
-  if (color.isValid()) {
-    const hsv = color.toHsv()
-    alpha.value = Math.round(rgba.a * 100)
-    updateFromHSV(hsv.h, hsv.s, hsv.v)
-  }
-}
-
 function setPresetColor(color: string): void {
   const selectedColor = tinycolor(color)
   const hsv = selectedColor.toHsv()
@@ -118,21 +141,24 @@ function handleColorPick(pickedColor: string): void {
   if (color.isValid()) {
     const hsv = color.toHsv()
     const rgbValues = color.toRgb()
-
     hue.value = hsv.h || 0
     saturation.value = hsv.s
     brightness.value = hsv.v
     alpha.value = Math.round((rgbValues.a || 1) * 100)
-
     updateColor()
   }
+}
+
+// Обработчик изменения модели цвета из ColorPickerInputs
+function handleColorModelChange(newModel: 'hex' | 'rgb' | 'hsl'): void {
+  selectedColorModel.value = newModel
+  updateColor() // Пересчитываем и эмитим цвет в новом формате
 }
 
 watch(
   () => props.modelValue,
   (newValue) => {
     if (!newValue) return
-
     const color = tinycolor(newValue)
     if (color.isValid()) {
       const hsv = color.toHsv()
@@ -140,12 +166,10 @@ watch(
       rgb.r = rgbValues.r
       rgb.g = rgbValues.g
       rgb.b = rgbValues.b
-
       rgba.r = rgbValues.r
       rgba.g = rgbValues.g
       rgba.b = rgbValues.b
       rgba.a = rgbValues.a || 1
-
       hue.value = hsv.h || 0
       saturation.value = hsv.s
       brightness.value = hsv.v
@@ -162,12 +186,10 @@ onMounted(() => {
     if (color.isValid()) {
       const hsv = color.toHsv()
       const rgbValues = color.toRgb()
-
       hue.value = hsv.h || 0
       saturation.value = hsv.s
       brightness.value = hsv.v
       alpha.value = Math.round((rgbValues.a || 1) * 100)
-
       updateColor()
     }
   }
@@ -189,7 +211,6 @@ onMounted(() => {
           :hue="hue"
           @update="updateFromHSV"
         />
-
         <div class="inline-flex items-center gap-3">
           <div class="grid w-full gap-1">
             <ColorPickerHue
@@ -204,7 +225,6 @@ onMounted(() => {
             @pick-color="handleColorPick"
           />
         </div>
-
         <ColorPickerInputs
           :hex="hex"
           :rgb="rgb"
@@ -217,8 +237,8 @@ onMounted(() => {
           "
           @update:rgb="updateColorFromRGB"
           @update:alpha="updateAlpha"
+          @update:color-model="handleColorModelChange"
         />
-
         <ColorPickerPresets
           v-if="props.showPresets"
           :selectedColor="hex"

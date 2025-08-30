@@ -22,6 +22,7 @@ const emit = defineEmits<{
   'update:hex': [value: string]
   'update:rgb': []
   'update:alpha': [value: number]
+  'update:color-model': [model: 'hex' | 'rgb' | 'hsl'] // Добавляем новый emit
 }>()
 
 const localHex = ref(props.hex)
@@ -72,7 +73,13 @@ watch(
   () => props.alpha,
   (v) => (localAlpha.value = v),
 )
-watch(colorModel, (v) => v === 'hsl' && (editableHsl.value = { ...localHsl.value }))
+watch(colorModel, (newModel) => {
+  if (newModel === 'hsl') {
+    editableHsl.value = { ...localHsl.value }
+  }
+  // Эмитим изменение модели в родительский компонент
+  emit('update:color-model', newModel)
+})
 
 const updateHex = () => emit('update:hex', localHex.value)
 const updateRgb = () => emit('update:rgb')
