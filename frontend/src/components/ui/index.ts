@@ -1,4 +1,4 @@
-export { default as ColorPicker } from './ColorPicker.vue'
+export { default as ColorPicker } from './color-picker/ColorPicker.vue'
 export { default as GradualBlur } from './GradualBlur.vue'
 export { default as InputWithIcon } from './InputWithIcon.vue'
 export { default as LanguageSwitcher } from './LanguageSwitcher.vue'

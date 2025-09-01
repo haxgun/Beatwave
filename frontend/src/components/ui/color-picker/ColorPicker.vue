@@ -30,14 +30,16 @@ interface Props {
   class?: HTMLAttributes['class']
   showPresets?: boolean
   showPipette?: boolean
-  outputFormat?: 'hex' | 'rgb' | 'hsl' | 'auto' // Добавляем возможность задать формат вывода
+  showCopy?: boolean
+  outputFormat?: 'hex' | 'rgb' | 'hsl' | 'auto'
 }
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: 'rgba(255, 255, 255, 1)',
   showPresets: true,
   showPipette: true,
-  outputFormat: 'auto', // По умолчанию автоматически определяем формат
+  showCopy: true,
+  outputFormat: 'auto',
 })
 
 const emit = defineEmits<{
@@ -52,7 +54,6 @@ const rgb = reactive<RGB>({ r: 255, g: 255, b: 255 })
 const rgba = reactive<RGBA>({ r: 255, g: 255, b: 255, a: 1 })
 const hex = ref<string>('#ffffff')
 
-// Добавляем состояние для отслеживания выбранного формата в ColorPickerInputs
 const selectedColorModel = ref<'hex' | 'rgb' | 'hsl'>('hex')
 
 function updateColor(): void {
@@ -68,7 +69,6 @@ function updateColor(): void {
   rgba.a = alpha.value / 100
   hex.value = color.toHexString()
 
-  // Формируем вывод в зависимости от выбранного формата или настройки
   const outputColor = getOutputColor(color)
   emit('update:modelValue', outputColor)
 }
@@ -76,7 +76,6 @@ function updateColor(): void {
 function getOutputColor(color: tinycolor.Instance): string {
   const colorWithAlpha = color.setAlpha(alpha.value / 100)
 
-  // Если задан конкретный формат вывода, используем его
   if (props.outputFormat !== 'auto') {
     switch (props.outputFormat) {
       case 'hex':
@@ -88,7 +87,6 @@ function getOutputColor(color: tinycolor.Instance): string {
     }
   }
 
-  // Иначе используем формат, выбранный пользователем в ColorPickerInputs
   switch (selectedColorModel.value) {
     case 'hex':
       return alpha.value < 100 ? colorWithAlpha.toRgbString() : colorWithAlpha.toHexString()
@@ -149,10 +147,9 @@ function handleColorPick(pickedColor: string): void {
   }
 }
 
-// Обработчик изменения модели цвета из ColorPickerInputs
 function handleColorModelChange(newModel: 'hex' | 'rgb' | 'hsl'): void {
   selectedColorModel.value = newModel
-  updateColor() // Пересчитываем и эмитим цвет в новом формате
+  updateColor()
 }
 
 watch(
@@ -202,7 +199,7 @@ onMounted(() => {
       :style="{ backgroundColor: `rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a})` }"
       :class="cn('size-5 cursor-pointer rounded-sm', props.class)"
     />
-    <PopoverContent align="start" class="w-80">
+    <PopoverContent align="start" class="w-80 overflow-hidden">
       <div class="grid gap-3">
         <ColorPickerSaturation
           :hex="hex"
@@ -229,6 +226,7 @@ onMounted(() => {
           :hex="hex"
           :rgb="rgb"
           :alpha="alpha"
+          :show-copy="props.showCopy"
           @update:hex="
             (newHex) => {
               hex = newHex

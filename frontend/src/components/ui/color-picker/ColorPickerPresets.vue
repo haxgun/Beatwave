@@ -9,23 +9,25 @@ const emit = defineEmits<{
 
 const presetColors: string[] = [
   '#f2f2f2',
-  '#e8c6d2',
-  '#f2c1d1',
+  '#f25c54',
+  '#fa7268',
   '#f1b79b',
   '#ff9e6d',
-  '#ff7986',
-  '#f25c54',
   '#ff9f00',
   '#f4a300',
   '#09bc8a',
   '#43b2a1',
-  '#4c8c8b',
   '#00ffe3',
+  '#4c8c8b',
   '#004f8c',
-  '#a78ec1',
-  '#b4a0d0',
-  '#bb2649',
+  '#1a60a8',
   '#07090e',
+  '#b4a0d0',
+  '#a78ec1',
+  '#e8c6d2',
+  '#f2c1d1',
+  '#bb2649',
+  '#ff7986',
 ]
 
 function selectColor(color: string) {

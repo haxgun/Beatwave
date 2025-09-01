@@ -16,13 +16,14 @@ const props = defineProps<{
   hex: string
   rgb: { r: number; g: number; b: number }
   alpha: number
+  showCopy: boolean
 }>()
 
 const emit = defineEmits<{
   'update:hex': [value: string]
   'update:rgb': []
   'update:alpha': [value: number]
-  'update:color-model': [model: 'hex' | 'rgb' | 'hsl'] // Добавляем новый emit
+  'update:color-model': [model: 'hex' | 'rgb' | 'hsl']
 }>()
 
 const localHex = ref(props.hex)
@@ -77,7 +78,6 @@ watch(colorModel, (newModel) => {
   if (newModel === 'hsl') {
     editableHsl.value = { ...localHsl.value }
   }
-  // Эмитим изменение модели в родительский компонент
   emit('update:color-model', newModel)
 })
 
@@ -120,14 +120,13 @@ async function copyColor() {
 }
 
 const inputClass =
-  'h-8 flex-1 bg-transparent text-xs font-medium transition-colors hover:bg-white/5 [-moz-appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+  'h-8 bg-transparent text-xs font-medium px-2.5 transition-colors hover:bg-white/5 [-moz-appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
 </script>
 
 <template>
-  <div class="flex items-center gap-2 w-full">
-    <!-- Селектор модели -->
+  <div class="flex items-center gap-1 w-full overflow-hidden">
     <Select v-model="colorModel">
-      <SelectTrigger size="sm" class="text-xs shrink-0">
+      <SelectTrigger size="sm" class="px-2 text-xs shrink-0">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
@@ -138,41 +137,35 @@ const inputClass =
     </Select>
 
     <!-- HEX -->
-    <div v-if="colorModel === 'hex'" class="flex -space-x-px flex-1">
+    <div v-if="colorModel === 'hex'" class="inline-flex -space-x-px min-w-0">
       <Input
         v-model="localHex"
-        :class="[inputClass, 'uppercase rounded-r-none border-r-0']"
+        :class="[inputClass, 'uppercase rounded-r-none border-r-0 min-w-0']"
         placeholder="HEX"
         @blur="updateHex"
         @keydown.enter="updateHex"
       />
-      <div class="relative flex-1">
-        <Input
-          v-model.number="localAlpha"
-          type="number"
-          min="0"
-          max="100"
-          placeholder="A"
-          :class="[inputClass, 'rounded-l-none pr-5']"
-          @blur="updateAlpha"
-          @keydown.enter="updateAlpha"
-        />
-        <span
-          class="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-muted-foreground pointer-events-none"
-          >%</span
-        >
-      </div>
+      <Input
+        v-model.number="localAlpha"
+        type="number"
+        min="0"
+        max="100"
+        placeholder="A"
+        :class="[inputClass, 'rounded-l-none  min-w-0']"
+        @blur="updateAlpha"
+        @keydown.enter="updateAlpha"
+      />
     </div>
 
     <!-- RGB -->
-    <div v-else-if="colorModel === 'rgb'" class="flex -space-x-px flex-1">
+    <div v-else-if="colorModel === 'rgb'" class="inline-flex -space-x-px min-w-0">
       <Input
         v-model.number="localRgb.r"
         type="number"
         min="0"
         max="255"
         placeholder="R"
-        :class="[inputClass, 'rounded-r-none border-r-0']"
+        :class="[inputClass, 'rounded-r-none border-r-0 min-w-0']"
         @blur="updateRgb"
         @keydown.enter="updateRgb"
       />
@@ -182,7 +175,7 @@ const inputClass =
         min="0"
         max="255"
         placeholder="G"
-        :class="[inputClass, 'rounded-none border-r-0']"
+        :class="[inputClass, 'rounded-none border-r-0 min-w-0']"
         @blur="updateRgb"
         @keydown.enter="updateRgb"
       />
@@ -192,96 +185,72 @@ const inputClass =
         min="0"
         max="255"
         placeholder="B"
-        :class="[inputClass, 'rounded-none border-r-0']"
+        :class="[inputClass, 'rounded-none border-r-0 min-w-0']"
         @blur="updateRgb"
         @keydown.enter="updateRgb"
       />
-      <div class="relative flex-1">
-        <Input
-          v-model.number="localAlpha"
-          type="number"
-          min="0"
-          max="100"
-          placeholder="A"
-          :class="[inputClass, 'rounded-l-none pr-5']"
-          @blur="updateAlpha"
-          @keydown.enter="updateAlpha"
-        />
-        <span
-          class="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-muted-foreground pointer-events-none"
-          >%</span
-        >
-      </div>
+      <Input
+        v-model.number="localAlpha"
+        type="number"
+        min="0"
+        max="100"
+        placeholder="A"
+        :class="[inputClass, 'rounded-l-none min-w-0']"
+        @blur="updateAlpha"
+        @keydown.enter="updateAlpha"
+      />
     </div>
 
     <!-- HSL -->
-    <div v-else-if="colorModel === 'hsl'" class="flex -space-x-px flex-1">
+    <div v-else-if="colorModel === 'hsl'" class="inline-flex -space-x-px min-w-0">
       <Input
         v-model.number="editableHsl.h"
         type="number"
         min="0"
         max="360"
         placeholder="H"
-        :class="[inputClass, 'border-r-0 rounded-r-none']"
+        :class="[inputClass, 'border-r-0 rounded-r-none min-w-0']"
         @blur="updateFromHsl"
         @keydown.enter="updateFromHsl"
       />
-      <div class="relative flex-1">
-        <Input
-          v-model.number="editableHsl.s"
-          type="number"
-          min="0"
-          max="100"
-          placeholder="S"
-          :class="[inputClass, 'border-r-0 rounded-none pr-5']"
-          @blur="updateFromHsl"
-          @keydown.enter="updateFromHsl"
-        />
-        <span
-          class="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-muted-foreground pointer-events-none"
-          >%</span
-        >
-      </div>
-      <div class="relative flex-1">
-        <Input
-          v-model.number="editableHsl.l"
-          type="number"
-          min="0"
-          max="100"
-          placeholder="L"
-          :class="[inputClass, 'border-r-0 rounded-none pr-5']"
-          @blur="updateFromHsl"
-          @keydown.enter="updateFromHsl"
-        />
-        <span
-          class="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-muted-foreground pointer-events-none"
-          >%</span
-        >
-      </div>
-      <div class="relative flex-1">
-        <Input
-          v-model.number="localAlpha"
-          type="number"
-          min="0"
-          max="100"
-          placeholder="A"
-          :class="[inputClass, 'rounded-l-none pr-5']"
-          @blur="updateAlpha"
-          @keydown.enter="updateAlpha"
-        />
-        <span
-          class="absolute right-2 top-1/2 -translate-y-1/2 text-xs text-muted-foreground pointer-events-none"
-          >%</span
-        >
-      </div>
+      <Input
+        v-model.number="editableHsl.s"
+        type="number"
+        min="0"
+        max="100"
+        placeholder="S"
+        :class="[inputClass, 'rounded-l-none rounded-r-none border-r-0 min-w-0']"
+        @blur="updateFromHsl"
+        @keydown.enter="updateFromHsl"
+      />
+      <Input
+        v-model.number="editableHsl.l"
+        type="number"
+        min="0"
+        max="100"
+        placeholder="L"
+        :class="[inputClass, 'rounded-l-none rounded-r-none border-r-0 min-w-0']"
+        @blur="updateFromHsl"
+        @keydown.enter="updateFromHsl"
+      />
+      <Input
+        v-model.number="localAlpha"
+        type="number"
+        min="0"
+        max="100"
+        placeholder="A"
+        :class="[inputClass, 'rounded-l-none min-w-0']"
+        @blur="updateAlpha"
+        @keydown.enter="updateAlpha"
+      />
     </div>
 
-    <!-- Кнопка копирования -->
     <Button
+      v-if="props.showCopy"
       @click="copyColor"
-      size="icon"
-      variant="outline"
-      class="h-8 w-8 shrink-0"
+      variant="secondary"
+      size="none"
+      class="size-8 bg-transparent"
       :class="{ 'bg-green-50 border-green-200': isCopied }"
     >
       <CheckIcon v-if="isCopied" class="h-3 w-3 text-green-600" />

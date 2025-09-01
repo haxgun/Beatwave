@@ -27,9 +27,9 @@ const props = withDefaults(defineProps<DefaultOverlay>(), {
     "
     :style="{
       fontFamily: props.textFont,
-      backgroundColor: `${props.backgroundColor}CC`,
+      backgroundColor: props.backgroundColor,
       color: props.textColor,
-      borderColor: `${props.borderColor}80`,
+      borderColor: props.borderColor,
     }"
   >
     <div

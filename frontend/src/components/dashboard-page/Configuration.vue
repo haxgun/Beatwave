@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ColorPicker, SelectFont } from '@/components/ui'
+import { ColorPicker, InputWithIcon, SelectFont } from '@/components/ui'
 import { Slider } from '@/components/ui/slider'
 import { SwitchToggle } from '@/components/ui/switch-toggle'
 
@@ -39,19 +39,15 @@ const { t } = useI18n()
           <span class="text-sm w-1/2">
             {{ t('dashboard-page.configuration.blocks.background.features.color') }}
           </span>
-          <ColorPicker v-model="bgColor" />
+          <InputWithIcon v-model="bgColor">
+            <ColorPicker v-model="bgColor" />
+          </InputWithIcon>
         </div>
         <div class="inline-flex items-center justify-between w-full">
           <span class="text-sm w-1/2">
             {{ t('dashboard-page.configuration.blocks.background.features.avg-cover-color') }}
           </span>
           <SwitchToggle v-model="avgCoverColor" />
-        </div>
-        <div class="inline-flex items-center justify-between w-full">
-          <span class="text-sm w-1/2">
-            {{ t('dashboard-page.configuration.blocks.background.features.opacity') }}
-          </span>
-          <Slider :default-value="[100]" :max="100" :step="1" />
         </div>
         <div class="inline-flex items-center justify-between w-full">
           <span class="text-sm w-1/2">
@@ -69,7 +65,9 @@ const { t } = useI18n()
           <span class="text-sm w-1/2">
             {{ t('dashboard-page.configuration.blocks.border.features.color') }}
           </span>
-          <ColorPicker v-model="borderColor" />
+          <InputWithIcon v-model="bgColor">
+            <ColorPicker v-model="borderColor" />
+          </InputWithIcon>
         </div>
         <div class="inline-flex items-center justify-between w-full">
           <span class="text-sm w-1/2">
@@ -93,7 +91,9 @@ const { t } = useI18n()
           <span class="text-sm w-1/2">
             {{ t('dashboard-page.configuration.blocks.text.features.color') }}
           </span>
-          <ColorPicker v-model="textColor" />
+          <InputWithIcon v-model="bgColor">
+            <ColorPicker v-model="textColor" />
+          </InputWithIcon>
         </div>
         <div class="inline-flex items-center justify-between w-full">
           <span class="text-sm w-1/2">
