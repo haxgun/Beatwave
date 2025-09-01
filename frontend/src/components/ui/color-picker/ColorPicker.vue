@@ -79,7 +79,7 @@ function getOutputColor(color: tinycolor.Instance): string {
   if (props.outputFormat !== 'auto') {
     switch (props.outputFormat) {
       case 'hex':
-        return alpha.value < 100 ? colorWithAlpha.toRgbString() : colorWithAlpha.toHexString()
+        return alpha.value < 100 ? colorWithAlpha.toHex8String() : colorWithAlpha.toHexString()
       case 'rgb':
         return colorWithAlpha.toRgbString()
       case 'hsl':
@@ -89,7 +89,7 @@ function getOutputColor(color: tinycolor.Instance): string {
 
   switch (selectedColorModel.value) {
     case 'hex':
-      return alpha.value < 100 ? colorWithAlpha.toRgbString() : colorWithAlpha.toHexString()
+      return alpha.value < 100 ? colorWithAlpha.toHex8String() : colorWithAlpha.toHexString()
     case 'rgb':
       return colorWithAlpha.toRgbString()
     case 'hsl':

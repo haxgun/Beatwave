@@ -48,7 +48,7 @@ const colorString = computed(() => {
   const color = tinycolor(localRgb.value).setAlpha(localAlpha.value / 100)
   switch (colorModel.value) {
     case 'hex':
-      return localAlpha.value < 100 ? color.toRgbString() : color.toHexString()
+      return localAlpha.value < 100 ? color.toHex8String() : color.toHexString()
     case 'rgb':
       return color.toRgbString()
     case 'hsl':

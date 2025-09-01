@@ -65,7 +65,7 @@ const { t } = useI18n()
           <span class="text-sm w-1/2">
             {{ t('dashboard-page.configuration.blocks.border.features.color') }}
           </span>
-          <InputWithIcon v-model="bgColor">
+          <InputWithIcon v-model="borderColor">
             <ColorPicker v-model="borderColor" />
           </InputWithIcon>
         </div>
